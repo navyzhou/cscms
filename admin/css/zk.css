@@ -1,0 +1,98 @@
+@charset "utf-8";
+body{
+}
+
+*{
+	padding:0px;
+	margin:0px auto;
+	font-family:"微软雅黑";
+}
+.table th, .table td {text-align: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden; vertical-align: center;}
+#left{ background:#CCC;}
+.zxk_mag{ margin-top:5px;}
+.zxk_work_mag{margin-left:150px;  margin-top:-40px; z-index:100; background-color:#FFF;}
+.zxk_work_mag li a{ font-size:16px;}
+#zxk_maintable{ margin-right:30px;}
+#zxk_maintable1{ margin-right:30px;}
+.bg{background-color:#333;width:100%;height:100%;left:0;top:0;filter:alpha(opacity =   50);opacity:0.5;z-index:100;position:fixed !important;position:absolute;_top:expression(eval(document.compatMode &&     document.compatMode == 
+		 'CSS1Compat')?   
+            documentElement.scrollTop+   (document.documentElement.clientHeight-this.offsetHeight
+		)/2:document.body.scrollTop+   (document.body.clientHeight-
+		this.clientHeight )/2 );}* html .bg{background-color:#333;width:100%;height:1000px;left:0;top:0;filter:alpha(opacity =   50);opacity:0.5;z-index:1;position:fixed !important;position:absolute;_top:expression(eval(document.compatMode &&     document.compatMode == 
+		 'CSS1Compat')?   
+            documentElement.scrollTop+   (document.documentElement.clientHeight-this.offsetHeight
+		)/2:document.body.scrollTop+   (document.body.clientHeight-
+		this.clientHeight )/2 );}
+#zxk_wait{z-index:300; display:block;z-index:4444;margin-top:200px; width:50%}
+#mycaret{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left:4px;
+  vertical-align: middle;
+  border-top:4px solid transparent;
+  border-right:4px solid transparent;
+  border-left:4px solid #FFF;
+  border-bottom:4px solid transparent;
+}
+#zxk_checkbox{
+	width:95%;
+	height:auto;
+}
+#xuanzezhuanye option{
+	text-align: left;
+}
+#xuanzezhuanye{
+	text-align: left;
+}
+.modal-header{
+	background-color: #0099EE;
+}
+#zxk_checkbox label{
+	display: inline-table;
+}
+#zxk_checkboxxiugai label{
+	display: inline-table;
+}
+#nianfen-zxk option{
+	text-align:left;
+}
+#nianfen-zxk{
+	text-align:left;
+}
+#showadminInfo{
+	width:auto;
+	height: 80%;
+	margin-top: 20px;
+	float: right;
+}
+#showadminspan{
+	font-family: '微软雅黑';
+	font-size: 20px;
+	color:#FFFFFF; 
+}
+#admininfoshow{
+	font-family: '微软雅黑';
+	font-size: 16px;
+	color:#FFFFFF; 
+
+}
+.table .mytable tr{
+	height: 16px;
+}
+#zxk-data-dtype option{
+	text-align:left;
+	margin-left:5px;
+} 
+#mytablezxkaccom{
+	margin-left:10px;
+}
+option{
+	text-align:left;
+	margin-left:5px;
+}
+.zxksfont1{
+	font-family: '微软雅黑';
+	font-size: 18px;
+	color: red;
+}

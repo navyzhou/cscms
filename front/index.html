@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>学籍管理系统</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="./css/index.css"/>
+    <script  src="../js/lib/jquery-1.9.1.js"></script>
+    <script src="../js/lib/bootstrap.min.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+
+<!-- 忘记密码 -->
+<div id="forget" class="container navbar-fixed-top" style=" top: -370px">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="panel panel-danger"  style="text-align: center; height: 370px">
+                <div class="panel-heading">
+                    <h1 id="jien-pwd-info" style="margin: 0px;">重置密码</h1>
+                </div>
+                <div class="panel-body">
+                    <form action="" role="form">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <p>
+                                <h1>注意：</h1>
+                                <h5 style="font-family:'微软雅黑'">重置成功后，密码为身份证的后六位</h5>
+                                </p>
+                                <div class="input-group" style="margin: 20px;">
+                                    <span class="input-group-addon">学&nbsp;&nbsp;&nbsp;号</span>
+                                    <input id="sumForget" type="text" class="form-control" placeholder="请输入您的学号" onfocus="removeError2('sumForget','IdCard')" />
+                                </div>
+                                <div class="input-group" style="margin: 20px;">
+                                    <span  class="input-group-addon">身份证</span>
+                                    <input id="IdCard" type="text" class="form-control" placeholder="请输入您的身份证号码" onfocus="removeError2('sumForget','IdCard')">
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <a class="btn btn-danger" onclick="forget()">确&nbsp;&nbsp;认</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-info" href="javascript:hideForget()">取&nbsp;&nbsp;消</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<!-- 修改密码 -->
+<div id="alter" class="container navbar-fixed-top" style=" top:-370px;">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="panel panel-danger"  style="text-align: center; height: 310px">
+                <div class="panel-heading">
+                    <h1 id="jien-alter-pwd" style="margin: 0px;">修改密码</h1>
+                </div>
+                <div class="panel-body">
+                    <form action="" role="form">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="input-group" style="margin: 20px;">
+                                    <span class="input-group-addon">&nbsp;原&nbsp;密&nbsp;码</span>
+                                    <input id="oldPwd" type="password"  class="form-control" placeholder="请输入旧密码" onfocus="removeError('oldPwd')">
+                                </div>
+                                <div class="input-group" style="margin: 20px;">
+                                    <span class="input-group-addon">&nbsp;新&nbsp;密&nbsp;码</span>
+                                    <input id="newPwd" type="password"  class="form-control" placeholder="请输入新密码" onfocus="removeError2('newPwd','affPwd')">
+                                </div>
+                                <div class="input-group" style="margin: 20px;">
+                                    <span  class="input-group-addon">确认密码</span>
+                                    <input id="affPwd" type="password" class="form-control" placeholder="确认新密码" onfocus="removeError2('newPwd','affPwd')">
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+
+                        </div>
+                        <a class="btn btn-danger" onclick="alter()">确&nbsp;&nbsp;认</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-info" href="javascript:hideAlter()">取&nbsp;&nbsp;消</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.hnit.edu.cn/">湖南工学院</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="http://jwc.hnpu.edu.cn/">教务系统</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">二级学院<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://jsjkx.hnit.edu.cn/">计算机科学与技术学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://jxgc.hnit.edu.cn/">机械工程学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://www.hnit.edu.cn/xbsz/dqgc/">电气与信息工程学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://www.hnit.edu.cn/xbsz/jzgc/">建筑工程与艺术设计学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://www.hnit.edu.cn/xbsz/agx/">安全与环境工程学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://www.hnit.edu.cn/xbsz/chx/">材料与化学工程学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://www.hnit.edu.cn/xbsz/jgx/">经济与管理学院</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://wgyxy.hnit.edu.cn/">外国语学院</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="showLogin" class="navbar-form navbar-right" style="display: none;">
+                <span id="showLoginSname" style="float:left;color: #ffffff;margin-top:10px;font-size: 15px;"></span>
+                <button onclick="quit()" class="btn btn-warning" style="float:left;margin-left:10px;">退&nbsp;&nbsp;出</button>
+                <a href="javascript:showAlter()" style="float:left;color: #ffffff;margin-left:10px;margin-top:10px;font-size: 15px;">修改密码?</a>
+            </div>
+            <form id="initLogin" class="navbar-form navbar-right" role="form" style="display: none;">
+                <div id="snumDiv_initLogin" class="form-group">
+                    <input id="snum" type="text" placeholder="学号" class="form-control" onfocus="removeError('snum')">
+                </div>
+                <div id="pwdDiv_initLogin" class="form-group">
+                    <input id="pwd" type="password" placeholder="密码" class="form-control" onfocus="removeError('pwd')">
+                </div>
+                <a href="javascript:login()" class="btn btn-success">登&nbsp;&nbsp;录</a>&nbsp;&nbsp;<a href="javascript:showForget()" style="color: #ffffff;margin-top:20px;">忘记密码?</a>
+            </form>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div>
+<div class="jumbotron" style="height: 500px; background: white; margin-top: 50px; margin-bottom: 0px;">
+    <div id="initMain" class="container" style="display: none;">
+        <div class="row">
+            <div class="col-md-3"><br/><br/><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;湖南工学院创建于 1975 年，座落于中南重镇雁城衡阳，是经教育部批准，由湖南建材高等专科学校和湖南大学衡阳分校合并成立的一所公办全日制普通本科高等学校，教育部卓越工程师培养计划高校。 </p></div>
+            <div class="col-md-6" style="text-align: center"><img src="../img/logo.png" alt="湖南工学院" style="height:100%;width:80%"/></div>
+            <div class="col-md-3"><br/><br/><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立足湖南，面向全国，湖南工学院是一所以工为主，工、经、管、文、理多学科协调发展，具有较强的科技服务能力，培养 “ 重基础、重技术、重能力、高素质 ” 应用型人才的本科院校。</p></div>
+        </div>
+    </div>
+
+    <div id="showBody" class="container" style="display: none">
+        <div class="table-responsive" style="margin-top: 60px">
+            <table class="table table-bordered">
+                <tbody id="tbody">
+                <tr>
+                    <td class="titleBgColor width80">学号</td><td width="150px">${snum}</td>
+                    <td class="titleBgColor" width="100px">姓名</td><td width="140px">${sname}</td>
+                    <td class="titleBgColor width110">联系方式</td><td width="110px">${phone}</td>
+                    <td class="titleBgColor width80">性别</td><td>${sex}</td>
+                    <td rowspan="7" width="130px"><img src="${photo}" width="120px" height="150px" alt="${photo}" title="${sname}"/><p><a href="#">修改图像</a></p></td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">学院</td><td>${dname}</td>
+                    <td class="titleBgColor">专业</td><td>${mname}</td>
+                    <td class="titleBgColor">所在班级</td><td>${cname}</td>
+                    <td class="titleBgColor">宿舍</td><td>${dorm}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">QQ</td><td>${qqnum}</td>
+                    <td class="titleBgColor">邮箱</td><td>${email}</td>
+                    <td class="titleBgColor">政治面貌</td><td>${prole}</td>
+                    <td class="titleBgColor">学制</td><td>${stime}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">籍贯</td><td>${provincecity}</td>
+                    <td class="titleBgColor">父母姓名</td><td>${parent}</td>
+                    <td class="titleBgColor">父母电话</td><td>${tel}</td>
+                    <td class="titleBgColor">学历</td><td>${edu}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">身份证</td><td>${sidnum}</td>
+                    <td class="titleBgColor">出生年月</td><td>${birth}</td>
+                    <td class="titleBgColor">入学日期</td><td>${btime}</td>
+                    <td class="titleBgColor">状态</td><td>${dsname}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">住址</td><td colspan="5" class="contentstyle">${addr}</td>
+                    <td class="titleBgColor">贫困等级</td><td>${difficults}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">过级</td><td colspan="7" class="contentstyle">${cetprocess}</td>
+                </tr>
+                <tr>
+                    <td class="titleBgColor">考证</td><td colspan="8" class="contentstyle">${ctname}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer style="text-align: center">
+    <p class="STYLE1">
+        Copyright &copy; 2013-2014 All Rights Reserved 湖南工学院 &copy; 版权所有
+    </p>
+    <p class="STYLE1">
+        技术支持
+        <span class="yclogo">源辰信息科技有限公司(0734-8355998)</span>
+    </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:url(../imgs/noise.png) repeat }
+.photos{width:135px; height:170px;}
+.photos img{width:135px; height:170px;}
+.yclogo{ background:url(../imgs/yclogo.png)  no-repeat scroll left center rgba(0, 0, 0, 0);padding-left: 20px;}
+p{ font-family:"微软雅黑"; color:#000; font-size:14px; line-height:110%;}
+.pcontexts{
+	 border-bottom:1px dashed #CCCCCC;
+	 width:300px;
+	 padding-bottom:5px;
+}
+.photosborder{
+	width:144px;
+	height:179px;
+	border:#6CF solid 1px;
+	padding:4px;
+	border-radius:5px;
+	box-shadow:2px 2px 4px;
+	margin-left:80px;
+}
+.col-md-4{
+	padding-top:30px;
+	border:1px solid #CCCCCC;
+	margin-left:20px;
+	width:350px;
+	height:450px;
+	border-radius:5px;
+	box-shadow:2px 2px 4px;
+}
+.names{
+	font-size:30px;
+	color: inherit;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+.yclogos{
+	width:100px;
+	height:130px;
+	position:absolute;
+	margin-left:-10px;
+}
+.yclogos img{
+	width:100px;
+	height:130px;
+}
+.container{
+	margin-left:80px;
+}

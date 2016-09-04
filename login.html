@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>湖南工学院学生信息综合管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="shortcut icon" href="img/hedu.ico" type="images/x-icon" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/login.css">
+<script src="js/lib/jquery-1.9.1.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
+<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+        	<div class="col-md-4">
+            	<br/><br/>
+            	<img src="img/logo.png" width="100%"/>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<div class="panel">
+                	<div class="panel-heading login-top">用户登录</div>
+                    <div class="panel-body">
+                    	<form class="form-group col-lg-10 col-md-offset-1" action="" method="post" role="form" autocomplete="on">
+                			<div class="input-group">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">角&nbsp;&nbsp;色<span class="caret"></span></button>
+									<ul class="dropdown-menu">
+										<li><a id="role1" href="javascript:login('role1','loginrole')">学工处</a></li>
+										<li><a id="role2" href="javascript:login('role2','loginrole')">保卫处</a></li>
+										<li><a id="role3" href="javascript:login('role3','loginrole')">书记</a></li>
+										<li><a id="role4" href="javascript:login('role4','loginrole')">辅导员</a></li>
+                                        <li><a id="role5" href="javascript:login('role5','loginrole')">超级管理员</a></li>
+									</ul>
+								</div>
+								<input id="loginrole" type="text" class="form-control" disabled="disabled" value="辅导员" required placeholder="请选择角色"/>							<label class="input-group-addon"><a href="callbackpassword.html" class="errorinfo">忘记密码...</a></label>
+							</div>
+                            <br />
+                            <div class="input-group">
+                            	<label for="uname" class="input-group-addon">用户名</label>
+                                <input type="text" class="form-control" name="uname" id="uname" value="罗庆云" required placeholder="请输入用户名"/>
+                            </div>
+                            <br />
+                            <div class="input-group">
+                            	<label for="pwd" class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
+                                <input type="password" class="form-control" name="pwd" id="pwd" required value="123456"  placeholder="请输入密码"/>
+                            </div>
+                            <br />
+                            <div class="input-group">
+                            	<label for="vcode" class="input-group-addon">验证码</label>
+                                <input type="text" class="form-control" onblur="checkcode()" name="vcode" id="vcode" required placeholder="请输入右边的验证码"/>
+                                <label class="input-group-btn">&nbsp;&nbsp;&nbsp;<img src="template/valiCodeImg.jsp" onclick="changeVilidateCode(this)" border="0" title="点击图片刷新验证码" size="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                            	<input type="button" onclick="adminLogin()" value="登录" class="btn btn-success mybtn adlogins" disabled="true" id="lp_login" />
+                                <input type="reset" value="重置" class="btn btn-warning mybtn"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                            	<input type="button" value="注册" onClick="showRegisterPage()" class="btn btn-danger user-register" />
+                            </div>
+                		</form>
+                    </div>
+                    <div class="panel-footer login-footer">源辰信息 &copy; 版权所有</div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+	</div>
+    
+    <div class="register-page">
+		<div class="close-button">X</div>
+        <div class="register col-lg-6">
+            <div class="panel">
+                <div class="panel-heading login-top">用户注册</div>
+                <div class="panel-body">
+                    <form class="form-group col-lg-12" action="" method="post" role="form">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">角&nbsp;&nbsp;色<span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a id="role1" href="javascript:login('role1','role')">学工处</a></li>
+                                    <li><a id="role2" href="javascript:login('role2','role')">保卫处</a></li>
+                                    <li><a id="role3" href="javascript:login('role3','role')">书记</a></li>
+                                    <li><a id="role4" href="javascript:login('role4','role')">辅导员</a></li>
+                                    <li><a id="role5" href="javascript:login('role5','role')">超级管理员</a></li>
+                                </ul>
+                            </div>
+                            <input id="role" type="text" class="form-control" disabled="disabled" required placeholder="请选择角色"/>							<label class="input-group-addon"><a href="javascript:backlogin()" class="errorinfo">我已有账号...</a></label>
+                        	
+                        </div>
+                        <br/>
+                        
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">院&nbsp;&nbsp;系<span class="caret"></span></button>
+                                <ul class="dropdown-menu school_part">
+                                    <li><a id="part1" href="javascript:part('part1','part')">计算机信息与科学系</a></li>
+                                    <li><a id="part2" href="javascript:part('part2','part')">建工系</a></li>
+                                    <li><a id="part3" href="javascript:part('part3','part')">外语系</a></li>
+                                    <li><a id="part4" href="javascript:part('part4','part')">电信系</a></li>
+                                    <li><a id="part5" href="javascript:part('part5','part')">经管系</a></li>
+                                </ul>
+                            </div>
+                           <input id="part" type="text" class="form-control" disabled="disabled" required placeholder="请选择院系"/>	<label class="input-group-addon promptinfo">请选择院系</label>
+                        </div>
+                        
+                        <br />
+                        <div class="input-group">
+                            <label for="rname" class="input-group-addon">用户名</label>
+                            <input type="text" class="form-control" name="uname" id="rname" required placeholder="请输入用户名" maxlength="12" onblur="checkname()" / >								<label class="input-group-addon promptinfo" id="ckaname">由2-12位的中文、字母、数字和下划线组成</label>
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <label for="rpwd" class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
+                            <input type="password" class="form-control" name="rpwd" id="rpwd" onblur="checkpassword()" required  placeholder="请输入密码" maxlength="16"/>
+                            <label class="input-group-addon promptinfo" id="ckpassword" >由6-16位的字母、数字和下划线组成</label>
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <label for="rpwds" class="input-group-addon">确认密码</label>
+                            <input type="password" class="form-control" name="rpwds" id="rpwds" onblur="checkpasswordagain()" required placeholder="请再输入一次密码，以确认" maxlength="16"/>
+                            <label class="input-group-addon promptinfo" id="ckpasswordagain">请再输入一次密码，以确认</label>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <label for="email" class="input-group-addon">邮&nbsp;&nbsp;&nbsp;箱</label>
+                            <input type="email" class="form-control" name="email" id="email" onblur="checkemail()" required placeholder="请输入您的邮箱账号"/>
+                            <label class="input-group-addon promptinfo" id="ckemail" >请输入邮箱账号，以便忘记密码时找回</label>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <label for="tel" class="input-group-addon">联系方式</label>
+                            <input type="number" class="form-control" name="tel" id="tel" onblur="checktel()" maxlength="12" required placeholder="请输入您联系方式"/>
+                            <label class="input-group-addon promptinfo" id="cktel">请输您的联系方式</label>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <label for="reson" class="input-group-addon">申请信息</label>
+                            <input type="text" class="form-control" name="reson" onblur="checkreson()" id="reson" maxlength="50" required placeholder="请输入申请信息（50字以内）"/>
+                            <label class="input-group-addon promptinfo" id="ckreson">请输您的申请信息</label>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <input value="注册" type="button" class="btn btn-success user-register" onclick="adminregister()"/>
+                            <input type="reset" value="重置" class="btn btn-danger mybtn"/>
+                        </div>
+                     </form>
+                </div>
+                <div class="panel-footer login-footer">源辰信息 &copy; 版权所有</div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

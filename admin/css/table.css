@@ -1,0 +1,333 @@
+@charset "utf-8";
+/* CSS Document */
+.select_info table tr{width:100px; text-align:center; height:20px;}
+.select_info table{border-collapse:collapse;border-color:#39F;text-align:center;line-height:30px;vertical-align:middle;}
+.select_info table td{vertical-align:middle;border-collapse:collapse;border:1px solid #39F;font-size:12px;}
+.tab{width:90%;height:460px; float:left; position:absolute; left:170px;z-index:-1;}
+.tab table{border-collapse:collapse;border-color:#39F;text-align:center;line-height:30px;vertical-align:middle;}
+.tab table td{vertical-align:middle;border-collapse:collapse;border:1px solid #39F;font-size:13px;}
+.odd{ background:#FFF}
+.even{ background:#CCC;}
+<!--详细信息的修改-->
+input{margin-left:5px;border-bottom:1px;}
+.studentDetilInfo{position:absolute;left:140px;float:left;width:95%;height:460px; z-index:-1;left: 10px;}
+.studentDetilInfo table{border-collapse:collapse;border-color:#39F;text-align:center;line-height:30px;vertical-align:middle;}
+label{width:100px;height:30px;display:inline;overflow:hidden;}
+.studentDetilInfo table caption{font-size:18px;font-family:"黑体";margin:10px auto;color:#39F;letter-spacing:2px;}
+.myinpuwdth{position: relative;float:left;width:120px;margin: 0px 3px 0px 0px;min-height: 1px;}
+.muyinputwdd{position: relative;float:left;width:195px;min-height: 1px;}
+/*#addrxg{position:relative;float: left;width:90%;background-color:#8C007F;}*/
+#myaddresss{position:relative;float:right;margin-right:5px;}
+#myContent{position:relative;float:left;width:89%;height: 40px;overflow:hidden;}
+#scollorContent{position:absolute;top:0px;width:100%;heigth:100%;transition: top 0.6s linear;-moz-transition:top 0.6s linear;-webkit-transition:top 0.6s linear;-o-transition:top 0.6s linear;}
+#scollorContent div{position:relative;float:left;}
+#zmsoh{margin-bottom:10px;margin-top:2px;width: 100%;padding: 0px;}
+.titleBgColor{background:#CCC;color:#303;letter-spacing:1px;font-size:13px; border-radius:5px; text-align:center;}
+.studentDetilInfo table td{vertical-align:middle;border-collapse:collapse;border:10px solid #FFF;border-radius:22px; font-size:14px;}
+select{width:80%;}
+table input,select,option{text-align:center;}
+.person_img1{ line-height:140px;}
+.width80{width:80px;}	
+.width110{width:110px;}
+.contentstyle{	text-align:left;padding-left:10px;height: 40px;overflow: hidden;}
+#change{width:600px;height:50px;display:none;margin-top:150px;margin-left:150px;position: absolute;z-index:9999;background:#E9F3FD;border:1px solid blue;}
+.bg {background-color: #333333;height: 100%;left: 0;opacity: 0.5;	position: fixed !important;	top: 0;	width: 100%;z-index: 100;}
+.cguoji{width:400px;height:auto;display:none;	margin-top:150px;	margin-left:150px;position: absolute;	z-index:8888;background:#E9F3FD;border:1px solid blue;}
+.ckaozheng{width:400px;height:auto;display:none;	margin-top:150px;margin-left:150px;position: absolute;z-index:8888;	background:#E9F3FD;border:1px solid blue;}
+.smallbutton{background:#F00;width:80px;height:20px;line-heiht:15px;text-align:center;font-family:"微软雅黑";font-size:15px;color:#FFF;float:right;}
+.smallbutton1{background:#F00;width:80px;height:20px;line-heiht:15px;	text-align:center;font-family:"微软雅黑";font-size:15px;color:#FFF;display:inline-block;}
+.checkboxbutton{height:auto;width:auto;}
+.zmtdWidth{
+	width:15%;
+}
+#zmTableHour td{
+	vertical-align: middle;
+	text-align:center;
+	border: 0px solid #FFF;
+}
+.zmopbg{
+	position:relative;	
+	float: left;
+	padding: 10px 15px;
+}
+.zmbgbtn{
+	display: inline-block;
+	margin-bottom: 0px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-moz-user-select: none;		
+	margin-right:2px;
+}
+.zmhornorbg1{
+	background-image:url("../../img/glyphicons-halflings-white.png");
+	background-position:9px -68px;
+	background-repeat:no-repeat;	
+}
+.zmhornorbg2{
+	background-image:url("../../img/glyphicons-halflings-white.png");
+	background-position:-304px 3px;
+	background-repeat:no-repeat;	
+}
+#zmTableHour td select{
+	width:100%;
+}
+.zmcarousel-control.right {
+    right: 0px;
+    left: auto;
+    background-image: linear-gradient(to right, transparent 0px, rgba(93,178,205,0.3) 100%);
+    background-repeat: repeat-x;
+}
+.zmcarousel-control.left {
+    background-image: linear-gradient(to right, rgba(93,178,205,0.3) 0px, transparent 100%);
+    background-repeat: repeat-x;
+}
+.carousel-caption{background-color:rgba(34,159,241,.4);}
+/*下面的导航圈*/
+.zmcarousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    z-index: 1500;
+    width: 60%;
+    padding-left: 0px;
+    margin-left: -30%;
+    background-color: rgba(34,36,77,1);
+    text-align: center;
+    list-style: none outside none;
+    bottom: -35px;
+}
+.zmrow{
+	color:#101010;
+	font-size:18px;
+	background-color:#E7E7E7;
+}
+.zmNavigation{
+	position: absolute;    
+    left: 50%;
+    z-index: 1500;
+    bottom: -50px;
+    padding-left: 0px;
+    margin-left: -10%;    
+}
+.zmcarousel-indicators .active {
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    background-color: #4CB9DA;
+}
+.zmcarousel-indicators li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid rgba(38, 179, 50, 1);
+    border-radius: 10px;
+}
+.zmcarousel-control{
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	width: 2%;
+	font-size: 20px;
+	color: #FFF;
+	text-align: center;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+	opacity: 1;	
+}
+.zmcarousel-control .icon-prev, .zmcarousel-control .icon-next, .zmcarousel-control .glyphicon-chevron-left, .zmcarousel-control .glyphicon-chevron-right {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+}
+.zmDiv{
+	border: 0px solid #FFF;
+	border-radius: 5px;
+	padding: 8px 30px;
+	background-color:#CCCCCC;
+}
+#zmTableHour tr{
+	padding:10px;
+}
+/* 加的样式  */
+.btnwidth{
+	margin-top:10px;
+	width:120px;
+	height:30px;
+	z-index:10;
+	opacity:0;
+}
+.zmbtnwidth{	
+	width:80px;
+	height:30px;
+	z-index:10;
+	opacity:0;
+}
+.zmbtncover{
+	margin-top:-45px;
+	z-index:-5;
+	opacity:1;
+}
+#addImages nav{
+	padding:10px 0px;
+}
+#addImages img{
+	max-width:114px;
+	max-height:156px;
+}
+#zmimglist{
+	overflow: scroll;
+}
+.btncover{
+	margin-top:-175px;
+	z-index:-5;
+	opacity:1;
+}
+
+.jaddress{
+	width:290px;
+	margin-left:-70px;
+	margin-top:-5px;
+}
+
+.dropdown-menu li{
+	cursor:pointer;
+}
+
+.dropdown-menu li:hover{
+	background-color:rgba(204,204,204,.3);
+}
+
+.jclass-menu{
+	width:400px;
+	height:auto;
+}
+
+.jclass-menu li{
+	float:left;
+	padding:5px;
+	border-radius:5px;
+}
+
+.lp_batch{
+	padding:0px 10px 0px 10px;
+	margin:10px 0px 10px 0px;
+}
+
+.overlap{
+	position:absoulte;
+	height:525px;
+	overflow:hidden;
+	display:none;
+}
+
+.jhelptable{
+	margin-top:90px;
+}
+.jhelptable tr{
+	margin-top:10px;
+}
+
+.jhelptable td{
+	padding:0px 10px;
+	border-bottom: #FFF 20px solid;
+	border-top: #FFF 20px solid;
+	border-radius: 20px;
+}
+
+.jstunumul{
+	width:725px;
+}
+
+.jhelpul li{
+	text-align:center;
+	padding:5px 0px;
+	width:174px;
+}
+
+.jhelpul_1 li{
+	text-align:center;
+	padding:5px 0px;
+	width:164px;
+}
+
+.jstunumul li{
+	float:left;
+	width:120px;
+	padding:5px 0px;
+	border-radius:5px;
+}
+
+.jstunumul-1{
+	width:485px;
+}
+
+.jstunumul-1 li{
+	float:left;
+	width:120px;
+	padding:5px 0px;
+	border-radius:5px;
+}
+
+.jtabledetail{
+	width:1120px;
+	height:auto;
+	text-align:center;
+}
+
+
+.jtabledetail thead td{
+	background:#CCCCCC;
+}
+
+.jpageinput{
+	width:30px;height:20px;color:#428BCA;
+}
+
+/*这是省市级联的样式*/
+.privinces,.citys,.countys {position: absolute; width: 450px;background-color: #f8f8f8; padding: 10px 15px;border: 1px #d9d9d9 solid;border-radius: 0px 0px 15px 15px;box-shadow: 3px 3px 5px rgba(128,128,128,0.2);background-color: rgba(255,255,255,.9);z-index:1000;
+}
+.privinces .a,.citys .a,.countys .a { 
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #333;
+	text-decoration: none;
+	display: block;
+	float: left;
+	*display: inline-block;
+	_display: inline;
+	letter-spacing: 2px;
+	zoom: 1;
+	*float: none; 
+	padding: 3px 5px; 
+	border-radius: 5px;
+	text-shadow:2px 2px 3px rgba(255,255,255,.4);
+	transition: all 0.4s linear;
+	-moz-transition:all 0.4s linear;
+	-webkit-transition:all 0.4s linear;
+	-o-transition:all 0.4s linear;
+	-ms-transition: all 0.4s linear;
+}
+.privinces a:hover,.citys .a:hover,.countys .a:hover { 
+	background-color: rgba(167,202,47,.7);	
+	text-shadow:5px 7px 5px rgba(255,255,255,.4);	
+}
+.EnlishPass,.ComputerPass{
+	position:relative;
+	float:left;
+	width:65%;
+	heigth:auto;
+	margin-right: 10px;
+}

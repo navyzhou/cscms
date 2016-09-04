@@ -1,0 +1,3703 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>湖南工学院学生信息综合管理系统</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta charset="utf-8">
+		<!-- Bootstrap -->
+		<link rel="shortcut icon" href="../img/hedu.ico" type="images/x-icon" />
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css" media="screen">
+		<link rel="stylesheet" href="../css/font-awesome.min.css"><!-- 各种小图片 -->
+		<link rel="stylesheet" href="css/jquery-ui-1.10.3.full.min.css" />		
+		<link rel="stylesheet" href="css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="css/zm.css">
+		<link rel="stylesheet" href="css/zk.css">
+		<link rel="stylesheet" href="css/lp.css">
+		<link rel="stylesheet" href="css/jien.css">
+		<link rel="stylesheet" href="css/table.css">		
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/stuInfoChange_table.js"></script>
+		<script type="text/javascript" src="../js/lib/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="../js/lib/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/otherInfo.js"></script>
+		<script type="text/javascript" src="js/searchOtherInfo.js"></script>
+		<script type="text/javascript" src="js/stuInfo.js" charset="utf-8"></script>
+		<!--引用地区选择插件-->
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="js/areaselect.js"></script>
+		<!-- 文件上传js -->
+		<script type="text/javascript" src="js/batchStuInfo.js"></script>
+		<script type="text/javascript" src="js/jien.js"></script>
+		<script type="text/javascript" src="js/jpage.js"></script>
+		<script type="text/javascript" src="js/accommodation.js"></script>
+		<!-- 图片批量上传 -->
+		<script type="text/javascript" src="js/ImageBatchUpload.js"></script>
+        <!--dkaij's js-->
+        <script type="text/javascript" src="js/dkaij.js"></script>
+        <!-- JQgrid -->
+        <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="js/grid.locale-cn.js"></script>
+		<script type="text/javascript" src="js/jquery.jqGrid.min.js"></script>
+		<script type="text/javascript" src="js/zm.js"></script>
+	</head>
+<style type="text/css">
+.lp {
+	background: url(imgs/logo.jpg) repeat-x;
+	height:67px;
+}
+
+.fenyes {
+	background: #CCC;
+}
+
+@media(max-width:1300px){
+	body{
+		width:1300px;
+		overflow-x:scroll;
+	}
+	
+	header{
+		width:1300px;
+		overflow:hidden;
+	}
+	
+	#navy_data{
+		width:1300px;
+		overflow-x:scroll;
+	}
+	
+	#navy_left_menu{
+		width:200px;
+		float:left;
+	}
+	
+	#navy_right_data{
+		width:1080px;
+		float:left;
+	}
+	
+	#navy_right_data nav:first-child{
+		width:1080px;
+		overflow:hidden;
+	}
+}
+
+
+</style>
+	<body>
+		<div style="min-width:1000px;">
+		<!--头部-->
+		<div id="bg" class="bg" style="display: none;">
+			<div class="bs-example" id="zxk_wait">
+				<div class="progress progress-striped active">
+					<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 10%">
+						<span class="sr-only">45% Complete</span>
+					</div>
+				</div>
+			</div>
+			<center>
+				<div style="width:50%" id="dbrestored">
+					<h1>
+						<small>执行中，即将完成...</small>
+					</h1>
+				</div>
+			</center>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<header class="lp navbar-fixed-top" role="banner" style="min-width:1200px">
+				<div class="row">
+					<div class="lp_logo col-lg-9">
+						<img src="imgs/hugoLogo.gif">
+					<div id="showadminInfo">
+							<span id="showadminspan">当前用户：</span><span id="admininfoshow"></span>
+						</div>
+					</div>
+					<button type="button" id="ExportBtn" class="btn" data-toggle="modal" data-target="#Jien_ExportDialog" style="display:none">导出</button>
+					<div class="col-lg-1">
+						<button type="button" id="adminloginout"
+							class="button_top btn btn-warning" onclick="loginout()">
+							退出登录
+						</button>
+					</div>
+					<div class="col-lg-1">
+						<button type="button" class="button_top btn btn-info"
+							data-toggle="modal" data-target="#myModal">
+							修改信息
+						</button>
+					</div>
+					<div class="col-lg-1">
+						<img id="person_img" src="imgs/person.jpg">
+					</div>
+				</div>
+				</header>
+			</div>
+		</div>
+
+		<!--content部分-->
+		<div class="row" id="navy_data">
+			<!--左侧的菜单栏-->
+			<div class="lp_top col-md-2" id="navy_left_menu">
+				<div id="left" class="menu">
+				</div>
+			</div>
+			<!---查询部分-->
+			<div class="lp_down col-md-10" id="navy_right_data">
+				<nav class="navbar navbar-default" id="querywindow" role="navigation">
+				<div class="row" style="margin-top: 8px; margin-left: 5px;">
+					<form action="" id="stu_form">
+					<div class="col-xs-2">
+						<input type="text" class="form-control" placeholder="请输入姓名"
+							id="lp_stuName">
+					</div>
+					<div class="col-xs-2">
+						<input type="text" class="lp_stuID form-control"
+							placeholder="请输入学号" id="lp_stuID">
+					</div>
+					<div class="col-xs-2">
+						<input type="text" class="form-control" placeholder="输入楼栋号(B6)"
+							id="lp_stuHome">
+					</div>
+					<div class="col-xs-3">
+						<select class="lp_department form-control" name="items"
+							id="myOption">
+
+						</select>
+					</div>
+					<button type="button" class="more_select btn btn-primary"
+						data-toggle="modal" data-target="#moreInfo" onclick="showOtherSelect()">
+						更多条件
+					</button>
+					<button id="lp_keyup" type="button" data-loading-text="正在加载..." class="lp_keyup btn btn-warning"
+						onclick="selectStuInfo()">
+						查询
+					</button>
+					<button type="button" class="btn btn-danger" onclick="showModalDialogOfExportStudents()">
+						导出
+					</button>
+					<button type="button" class="btn btn-primary" onclick="resetForm()">
+						重置
+					</button>
+					</form>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px;">*注意：鼠标点击对应"学生学号"对数据进行操作</font>
+				</nav>
+				<!-- 查询学生心理跟踪信息 -->
+				<nav class="navbar navbar-default" id="lp_stuPsyInfo" role="navigation" style="display:none;">
+				<div class="row" style="margin-top: 8px; margin-left: 5px;">
+					<form action="">
+					<div class="col-xs-2">
+						<input type="text" class="form-control" placeholder="请输入姓名"
+							id="lp_stuPsyName">
+					</div>
+					<div class="col-xs-2">
+						<input type="text" class="lp_stuID form-control"
+							placeholder="请输入学号" id="lp_PsystuID">
+					</div>
+					<div class="col-xs-2 controls input-append date form_date" data-date=""
+						data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+						data-link-format="yyyy-mm-dd">
+						<input id="birthDate" name="birth" size="16" type="text" placeholder="申请时间"
+							class="form-control" value="" readonly required>
+						<span class="add-on"><i class="icon-remove"></i> </span>
+						<span class="add-on"><i class="icon-th"></i> </span>
+					</div>
+					<div class="col-xs-2">
+						<select class="lp_StuPsyOption form-control" name="items"
+							id="lp_StuPsyOption">
+							<option></option>
+							<option>已完结</option>
+							<option>正在跟踪</option>
+						</select>
+					</div>
+					<div class="col-xs-2">
+						<select class="lp_StuPsyLevel form-control" name="items"
+							id="lp_StuPsyLevel">
+							<option></option>
+							<option>一般关注</option>
+							<option>重点关注</option>
+						</select>
+					</div>
+					
+					<button id="lp_keyup" type="button" data-loading-text="正在加载..." class="lp_keyup btn btn-warning"
+						onclick="findFollowStuPsy()">
+						查询
+					</button>
+					<button type="button" class="btn btn-danger" >
+						导出
+					</button>
+					<button type="reset" class="btn btn-primary">
+						重置
+					</button>
+					</form>
+				</div>
+				</nav>
+				
+				
+				<!--心理模块 -->
+				<div id="stuPsyTitle" style="display:none;">
+					<nav class="lp_stuPsy navbar navbar-default" role="navigation">
+						<div class="row" style="margin-top: 8px; margin-left: 5px;">
+							<button type="button" class="btn btn-primary" id="lp_title" onclick="allStuPsyInfoTiJiao()">
+								
+							</button>
+						</div>
+					</nav>
+				</div>		
+									
+				<div class="navbar navbar-default" id="yijianhuanyuan" style="display:none;">
+					<button id='aller' type='button' onclick='databackup()' class='btn btn-lg btn-info' style='float:right;margin-right:100px;'>一键备份数据库</button>
+				</div>
+				<div id="showCcieInfo" style="display:none;">
+					<table id="grid-table"></table>
+					<div id="grid-pager"></div>			
+					<!-- PAGE CONTENT ENDS -->						
+				</div>
+                <div id="cetDiv" style="display:none;">
+                    <table id="cet-table"></table>
+                    <div id="cet-pager"></div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+				<div id="showStudentDetilInfo" class="studentDetilInfo" style="display:none;">
+					<!--学生信息修改轮换 -->
+					<div id="carousel-example-generic" class="carousel slide zmcarousel">
+					  <!-- Indicators -->
+					<ul class="pagination zmNavigation">
+			          <li><a data-slide="prev" href="#carousel-example-generic">«</a></li>
+			          <li><a data-target="#carousel-example-generic" data-slide-to="0" class="active">1</a></li>
+			          <li><a data-target="#carousel-example-generic" data-slide-to="1">2</a></li>
+			          <li><a data-target="#carousel-example-generic" data-slide-to="2">3</a></li>
+			          <li><a data-target="#carousel-example-generic" data-slide-to="3">4</a></li>
+			          <li><a data-slide="next" href="#carousel-example-generic">»</a></li>
+			        </ul>					
+					  <!-- Wrapper for slides -->
+					  <form id="zmHornorForm" method="post"></form><!-- 荣誉表单 -->
+					  <form id="zmEnglishForm" method="post"></form><!-- 学生在校英语等级表单 -->
+					  <form id="zmCertificateForm" method="post"></form><!-- 学生在校证书表单 -->
+					  <form id="zmHouseCFForm" method="post"></form><!-- 学生在校寝室处罚表单 -->
+					  <form id="zmStudnetCFForm" method="post"></form><!-- 学生在校寝室处罚表单 -->
+					  <form id="zmStudnetExpressForm" method="post"></form><!-- 学生在校表现表单 -->
+					  <form id="zmPositionForm" method="post"></form><!-- 学生在校职务表单 -->
+					  <form id="zmJopForm" method="post"></form><!-- 学生工做表单 -->
+					  <div class="carousel-inner">
+					    <div class="item active">
+							<!--个人信息的表格-->
+							<form id="zmform" onsubmit="return Confirms()" method="post">
+								<table class="detail_Info" cellpadding="0px" cellspacing="0px"
+									width="100%" align="center" height="350px">
+									<tbody>
+										<tr>
+											<td class="titleBgColor width80">
+												学号
+											</td>
+											<td width="150px">
+												<input id="stunm" name="snum" type="text" class="form-control" value=""
+													pattern="[0-9]{0,15}" required></input>
+											</td>
+											<td class="titleBgColor" width="100px">
+												姓名
+											</td>
+											<td width="150px">
+												<input id="sname" name="sname" type="text" class="form-control" value=""
+													pattern="[\u4E00-\u9FA5]{2,7}" required></input>
+											</td>
+											<td class="titleBgColor width110">
+												联系方式
+											</td>
+											<td width="110px">
+												<input id="tel" type="text" name="phone" class="form-control" value=""
+													pattern="(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)"
+													required></input>
+											</td>
+											<td class="titleBgColor width80">
+												性别
+											</td>
+											<td width="150px">
+												<div>
+													<input id="boy" type="radio" name="sex" value="男" required>
+													男
+													<input id="girl" type="radio" name="sex" value="女" required>
+													女
+												</div>
+											</td>
+											<td class="person_img1" rowspan="7" width="130px">
+												<img id="stuImag" src="imgs/person.jpg" width="120px" height="150px"
+													alt="08301440130.jpg" title="周晨枫"  />
+												<p>
+													<input id="zphotofile" name="photo" class="btnwidth btn btn-warning" value="选择文件" type="file" required>
+													<input class="btncover btnwidth btn btn-warning" value="修改头像" type="button">																								
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												学院
+											</td>
+											<td>
+												<div class="dropdown" id="myDrop">
+													<select id="zmacademy" name="dname" class="form-control" required>
+													</select>												
+												</div>
+											</td>
+											<td class="titleBgColor">
+												专业
+											</td>
+											<td>
+												<div class="dropdown" id="Mmajor">		
+												<select id="zmmajor" name="mname" class="form-control" required>
+												</select>											
+												</div>
+											</td>
+											<td class="titleBgColor">
+												所在班级
+											</td>
+											<td width="150px">
+												<div class="dropdown" id="Mgrade">
+													<select id="zmgrades" name="cid" class="form-control" required>
+													</select>													
+												</div>
+											</td>
+											<td class="titleBgColor">
+												宿舍
+											</td>
+											<td>
+												<input id="dorm" class="form-control" name="hoursenum"
+													type="text" value="" placeholder="学生宿舍"
+													pattern="[A-Za-z0-9\-0-9\-A-Za-z]{4,10}" required>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												QQ
+											</td>
+											<td>
+												<input id="sqq" name="qqnum" class="form-control"
+													pattern="[0-9]{5,11}" type="text" value="" required>
+											</td>
+											<td class="titleBgColor">
+												邮箱
+											</td>
+											<td>
+												<input id="emial" name="email" class="form-control" type="email"
+													value="" required>
+											</td>
+											<td class="titleBgColor">
+												政治面貌
+											</td>
+											<td>
+												<div class="dropdown" id="Mpolitics">
+													<input id="politics" name="prole" data-toggle="dropdown"
+														class="form-control" type="text" value="" placeholder="政治面貌"
+														pattern="[\u4E00-\u9FA5]{2,8}" required>
+													<ul class="dropdown-menu" role="menu"
+														aria-labelledby="dLabel">
+														<li>
+															群众
+														</li>
+														<li>
+															共青团员
+														</li>
+														<li>
+															中共党员
+														</li>
+													</ul>
+												</div>
+											</td>
+											<td class="titleBgColor">
+												学制
+											</td>
+											<td>
+												<div class="dropdown" id="schoolsystem">
+													<input id="ischoolsystem" name="stime" data-toggle="dropdown"
+														class="form-control" type="number" max="5" min="3"
+														placeholder="大学时间" required>
+													<ul class="dropdown-menu" role="menu"
+														aria-labelledby="dLabel">
+														<li>
+															4
+														</li>
+														<li>
+															3
+														</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												籍贯
+											</td>
+											<td id="jiguan">
+												<input id="Birthplace" class="form-control" name="provincecity"
+													type="text" pattern="[\u4E00-\u9FA5]{2,10}"
+													required>
+											</td>
+											<td class="titleBgColor">
+												父母姓名
+											</td>
+											<td>
+												<input id="parentName" class="form-control" name="parent"
+													type="text" value="周晨枫" pattern="[\u4E00-\u9FA5]{2,7}"
+													required>
+											</td>
+											<td class="titleBgColor">
+												父母电话
+											</td>
+											<td>
+												<input id="ptel" class="form-control" name="tel"
+													type="text" value=""
+													pattern="(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)"
+													required>
+											</td>
+											<td class="titleBgColor">
+												学历
+											</td>
+											<td>
+												<div class="dropdown" id="education">
+													<input id="meducation" name="edu" data-toggle="dropdown"
+														class="form-control" type="text" value="" placeholder="文凭状态"
+														pattern="[\u4E00-\u9FA5]{2,6}" required>
+													<ul class="dropdown-menu" role="menu"
+														aria-labelledby="dLabel">
+														<li>
+															大学本科
+														</li>
+														<li>
+															专科
+														</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												身份证
+											</td>
+											<td>
+												<input id="idcared" class="form-control" name="sidnum"
+													type="text" value="430922198901133188"
+													pattern="^[\d]{6}(19|20)[\d]{2}((0[1-9])|(11|12))([012][\d]|(30|31))[\d]{3}[xX\d]$"
+													required>
+											</td>
+											<td class="titleBgColor">
+												出生年月
+											</td>
+											<td>
+		
+												<div class="controls input-append date form_date" data-date=""
+													data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+													data-link-format="yyyy-mm-dd">
+													<input id="birthDate" name="birth" size="16" type="text"
+														class="form-control" value="" readonly required>
+													<span class="add-on"><i class="icon-remove"></i> </span>
+													<span class="add-on"><i class="icon-th"></i> </span>
+												</div>
+											</td>
+											<td class="titleBgColor">
+												入学日期
+											</td>
+											<td>
+												<div class="controls input-append date form_date" data-date=""
+													data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+													data-link-format="yyyy-mm-dd">
+													<input id="cdate" size="16" type="text" class="form-control"
+														value="" readonly required>
+													<span class="add-on"><i class="icon-remove"></i> </span>
+													<span class="add-on"><i class="icon-th"></i> </span>
+												</div>
+											</td>
+											<td class="titleBgColor">
+												状态
+											</td>
+											<td>
+												<div class="dropdown" id="condition">
+													<select id="zmCondition" name="sstatus" class="lp_status form-control" required>
+													</select>												
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												住址
+											</td>
+											<td colspan="5" class="contentstyle">
+												<div id="myContent">
+													<div id="scollorContent">
+														<div class="col-sm-10" id="zmsoh">
+															<input type="text" name="addr" class="form-control" id="zmaddress"
+																placeholder="学生身份证登记地址"
+																pattern="^(?=.*?[\u4E00-\u9FA5])[\dA-Za-z\u4E00-\u9FA5]+"
+																required>
+														</div>
+														<div id="addrxg">
+															<div class="myinpuwdth">
+																<input type="text" id="sr1" class="form-control"
+																	placeholder="省份">
+															</div>
+															<div class="myinpuwdth">
+																<input type="text" id="ci1" class="form-control"
+																	placeholder="城市">
+															</div>
+															<div class="myinpuwdth">
+																<input type="text" id="co1" class="form-control"
+																	placeholder="县级">
+															</div>
+															<div class="muyinputwdd">
+																<input id="Townaddress" type="text" class="form-control"
+																	placeholder="镇/乡/村/组/...">
+															</div>
+														</div>
+														<script type="text/javascript">
+												            new locationCard({
+												                ids: ['sr1', 'ci1', 'co1']
+												            }).init();
+												        </script>
+													</div>
+												</div>
+												<div id="myaddresss">
+													<input type="button" value="修 改" class="btn btn-warning"
+														id="addressChange">
+												</div>
+											</td>
+		
+											<td class="titleBgColor">
+												贫困等级
+											</td>
+											<td>
+												<div class="dropdown" id="poverty">
+													<select id="zmDifficults" name="difficults" class="lp_status form-control" required>
+													</select>																							
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												过级
+											</td>
+											<td colspan="7" class="contentstyle" id="yiguo">
+												<div class="EnlishPass">
+													<input id="englishGrade" name="cetprocess" type="text" class="form-control"
+														placeholder="英语等级"
+														pattern="[\u4E00-\u9FA5,0-9,A-Za-z]{4,100}">
+												</div>	
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor">
+												操 作
+											</td>
+											<td colspan="6" class="contentstyle" id="yikao">
+												<button class="btn btn-danger" onclick="exportPDF()">导 出PDF</button>
+												<button class="btn btn-danger">导 出Word</button>&nbsp;&nbsp;
+												<span id="resourcePathPDF" onclick="this.innerHTML=''"></span>												
+											</td>
+											<td><input type="submit" value="确 认" class="btn btn-success btn-block"></td>
+											<td>
+												<a href="javascript:showStuInfo()" class="btn btn-warning btn-block">取消</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>						      
+					    </div>
+					    <div class="item">
+							<div>
+								<!-- 荣誉表 -->
+								  <table class="table table-condensed" id="zmTableHour" height="350px">
+								    <tbody>
+								    	<tr class="zmrow">
+								    		<td colspan="6">学生在校获得荣誉信息</td>								    	
+								    		<td class="col-md-1"><button id="moreHornor" form="zmHornorForm" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmHornorList">更多</button></td>
+								    		<td class="col-md-1"><input id="zmHornorSubmit" form="zmHornorForm" type="submit" class="btn btn-warning btn-block" value="修改" ></td>								    		
+								    		</tr>
+								    	<tr><!-- 荣誉表 -->	
+								    									    									    		
+								    		<td class="col-md-1"><div class="zmDiv">获得年份<input type="hidden" value="" form="zmHornorForm" name="hid" id="honorHid"></div></td>
+								    		<td class="col-md-2 zmtdWidth">
+												<div id="zmHounorDate" class="controls input-append date" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+													<input id="zmHounorTimes" form="zmHornorForm" name="times" size="16" class="form-control" value="" readonly="" type="text" required>													
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">获得学期</div></td>
+								    		<td class="col-md-2">
+    											<select id="zmHounoritemX" form="zmHornorForm" name="term" class="form-control" required>    												
+													<option value="1">上学期</option>
+													<option value="2">下学期</option>
+												</select>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">荣誉名称</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmHounorXname" form="zmHornorForm" name="hname" type="text" class="form-control" pattern="^[\u4E00-\u9FA5]{2,10}$" placeholder="荣誉名称" required>
+  											</td>  											
+								    		<td class="col-md-1"><div class="zmDiv">荣誉等级</div></td>
+								    		<td class="col-md-2">
+    											<select id="zmHounorL" form="zmHornorForm" name="levels" class="form-control" required>    												
+													<option value="1">校级荣誉</option>
+													<option value="2">学院荣誉</option>
+												</select>    											
+  											</td>  																						
+								    	</tr>								    	
+								    	<tr class="zmrow">
+								    		<td colspan="6">学生在校英语等级信息</td>
+								    		<td class="col-md-1"><button id="moreHornor" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmEngligshList">更多</button></td>
+								    		<td class="col-md-1"><input form="zmEnglishForm" type="submit" class="btn btn-warning btn-block" value="修改" ></td>
+								    	</tr>
+								    	<tr><!-- 英语等级表 -->
+								    		<td class="col-md-1"><div class="zmDiv">考试时间<input form="zmEnglishForm" type="hidden" value="" name="cid" id="zmEglishCid"></div></td>
+								    		<td class="col-md-2">
+												<div id="zmEglishDate" class="controls input-append date" data-date="" data-date-format="yyyy-mm" data-link-field="dtp_input2" data-link-format="yyyy-mm">
+													<input id="zmEglishTimes" form="zmEnglishForm" name="times" size="16" class="form-control" value="" readonly="" type="text" required>													
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>    											
+  											</td>								    	
+								    		<td class="col-md-1"><div class="zmDiv">考试学期</div></td>
+								    		<td class="col-md-2 zmtdWidth">
+    											<select id="zmEglishItem" form="zmEnglishForm" name="term" class="form-control" required>
+													<option value="1">上学期</option>
+													<option value="2">下学期</option>
+												</select>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">考试类型</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmEglishtype" form="zmEnglishForm" name="cettype" type="text" class="form-control" placeholder="英语考试类型" required>
+  											</td>
+								    		<td class="col-md-1 zmtdColor"><div class="zmDiv">英语成绩</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmEglishScore" form="zmEnglishForm" name="score" type="number" class="form-control" max="700" min="0" placeholder="英语成绩" required>
+  											</td>
+								    	</tr>
+								    	<tr class="zmrow">
+								    		<td colspan="6">学生在校获得证书信息</td>
+								    		<td class="col-md-1"><button id="moreHornor" type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmACFList">更多</button></td>
+								    		<td class="col-md-1"><input form="zmCertificateForm" type="submit" class="btn btn-warning btn-block" value="修改" ></td>
+								    		</tr>
+								    	<tr><!-- 证书表表 -->
+								    		<td class="col-md-1"><div class="zmDiv">获得年份<input form="zmCertificateForm" type="hidden" value="" name="hid" id="zmCFHid"></div></td>
+								    		<td class="col-md-2 zmtdWidth">
+												<div id="zmCertificateDate" class="controls input-append date" data-date="" data-date-format="yyyy-mm" data-link-field="dtp_input2" data-link-format="yyyy-mm">
+													<input form="zmCertificateForm" id="zmCfDates" name="times" size="16" class="form-control" value="" readonly="" type="text" required>													
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">获得学期</div></td>
+								    		<td class="col-md-2">
+    											<select form="zmCertificateForm" id="zmCFItem" name="term" class="form-control" required>
+													<option value="1">上学期</option>
+													<option value="2">下学期</option>
+												</select>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">证书名称</div></td>
+								    		<td class="col-md-2">
+    											<input name="name" form="zmCertificateForm" id="zmCFName" type="text" class="form-control" placeholder="证书名称" required>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">证书类型</div></td>
+								    		<td class="col-md-2">
+    											<select form="zmCertificateForm" id="zmCFType" name="tid" class="form-control" required>
+												</select>     											
+  											</td>
+								    	</tr>
+								    	<tr><!-- 证书表 -->
+								    		<td class="col-md-1"><div class="zmDiv">考试成绩</div></td>
+								    		<td class="col-md-2 zmtdWidth">
+												<input name="score" form="zmCertificateForm" id="zmCFScore" type="number" class="form-control" min="0" max="800" placeholder="考试成绩" required>												  											
+  											</td>
+  											<td colspan="6"><div class="zmDiv">证书包括各类信息数据</div></td>								    	
+								    	</tr>
+								    	<tr><td colspan="7"></td><td class="col-md-1"><a href="javascript:showStuInfo()" class="btn btn-warning btn-block">取消</a></td></tr>
+								    </tbody>
+								  </table>
+							</div>
+					    </div>
+					    <div class="item">
+							<div>								
+							<table class="table table-condensed" id="zmTableHour" height="350px">
+								    <tbody>
+								    	<tr class="zmrow">
+								    		<td colspan="6">学生在校通报信息</td><td class="col-md-1"><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmCFHList">更多</button></td>
+								    		<td class="col-md-1"><input form="zmHouseCFForm" type="submit" class="btn btn-warning btn-block" value="修改" ></td>
+								    	</tr>
+								    	<tr><!-- 寝室通报表 -->
+								    		<td class="col-md-1"><div class="zmDiv">通报年份<input form="zmHouseCFForm" type="hidden" value="" name="hid" id="zmHCFHid"></div></td>
+								    		<td class="col-md-2 zmtdWidth">
+												<div id="zmHouserPdate" class="controls input-append date" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+													<input form="zmHouseCFForm" id="zmHCFDate" name="times" size="16" class="form-control" value="" readonly="" type="text" required>													
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">通报学期</div></td>
+								    		<td class="col-md-2">
+    											<select form="zmHouseCFForm" id="zmHCFItem" name="term" class="form-control" required>
+													<option value="1">上学期</option>
+													<option value="2">下学期</option>
+												</select>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">通报寝室</div></td>
+								    		<td class="col-md-2">
+    											<input name="temp2" form="zmHouseCFForm" id="zmCFHousre" type="text" class="form-control" placeholder="通报寝室" readonly>
+  											</td>  											
+								    		<td class="col-md-1"><div class="zmDiv">通报等级</div></td>
+								    		<td class="col-md-2">
+    											<select form="zmHouseCFForm" id="zmHCFLv" name="levels" class="form-control" required>
+													<option value="1">校级通报</option>
+													<option value="2">学院通报</option>
+												</select>    											
+  											</td>
+								    	</tr>
+								    	<tr>
+										<td class="col-md-1"><div class="zmDiv">通报原因</div></td>
+							    		<td colspan="7">
+   											<input form="zmHouseCFForm" id="zmHCFreason" name="content" type="text" class="form-control" placeholder="通报原因" required>
+ 										</td> 								    	
+								    	</tr>
+								    	<tr class="zmrow">
+								    		<td colspan="6">学生在校处罚信息</td>
+								    		<td class="col-md-1"><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmXCFList">更多</button></td>
+								    		<td class="col-md-1"><input form="zmStudnetCFForm" type="submit" class="btn btn-warning btn-block" value="修改" ></td>
+								    	</tr>
+								    	<tr><!-- 处罚信息表 -->
+								    		<td class="col-md-1"><div class="zmDiv">处罚日期<input form="zmStudnetCFForm" type="hidden" value="" name="cid" id="zmXCFHid"></div></td>
+								    		<td class="col-md-2">
+												<div class="controls input-append date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+													<input id="zmXCFDate" form="zmStudnetCFForm" name="dates" size="16" class="form-control" value="" readonly="" required type="text">
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>    											
+  											</td>								    	
+								    		<td class="col-md-1"><div class="zmDiv">处罚学期</div></td>
+								    		<td class="col-md-2 zmtdWidth">
+    											<select id="zmXCFItem" name="mname" class="form-control" required>
+													<option value="1">上学期</option>
+													<option value="2">下学期</option>
+												</select>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">处罚等级</div></td>
+								    		<td class="col-md-2 zmtdWidth">
+    											<select id="zmXCFLevel" form="zmStudnetCFForm" name="levels" class="form-control" required>
+													<option value="1">校级处罚</option>
+													<option value="2">院级处罚</option>
+												</select>    											
+  											</td>
+  											<td class="col-md-1" colspan="2"><div class="zmDiv">处罚情况</div></td>
+								    	</tr>								    	
+								    	<tr><!-- 备注表信息 -->
+											<td class="col-md-1"><div class="zmDiv">通报原因</div></td>
+								    		<td colspan="7">
+	   											<input id="zmXCFReason" form="zmStudnetCFForm" type="text" class="form-control" name="content" placeholder="通报原因" required>
+	 										</td> 								    	
+								    	</tr>
+								    	<tr class="zmrow"><td colspan="8">学生在校备注信息</td></tr>
+								    	<tr><td colspan="7"></td><td class="col-md-1"><a href="javascript:showStuInfo()" class="btn btn-warning btn-block">取消</a></td></tr>
+								    </tbody>
+								  </table>
+								
+							</div>
+					    </div>
+					    <div class="item">
+							<!-- 学生职务一览表 -->
+							<div>							
+							<table class="table table-condensed" id="zmTableHour" height="350px">
+								<tbody>
+								    	<tr class="zmrow"><td colspan="8">学生在校获得荣誉信息</td></tr>
+								    	<tr><!-- 荣誉表 -->
+								    		<td class="col-md-1"><div class="zmDiv">发展方向<input form="zmStudnetExpressForm" type="hidden" value="" name="did" id="zmFDid"></div></td>
+								    		<td class="col-md-2">
+    											<input id="zmFZF" form="zmStudnetExpressForm" name="direction" type="text" class="form-control" placeholder="发展方向" required>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">考研培训</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmKY" form="zmStudnetExpressForm" name="ktname" type="text" class="form-control" placeholder="培训机构" required>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">专业方向</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmZYF" form="zmStudnetExpressForm" type="text" class="form-control" name="mname" placeholder="专业方向" required>
+  											</td>  											
+								    		<td class="col-md-1"><div class="zmDiv">专业培训</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmZYPX" form="zmStudnetExpressForm" name="mcname" type="text" class="form-control" placeholder="专业培训机构" required>
+  											</td>
+								    	</tr>
+								    	<tr>
+								    		<td class="col-md-1"><div class="zmDiv">在校表现</div></td>
+								    		<td colspan="3">
+												<input id="zmZXBX" form="zmStudnetExpressForm" name="performance" type="text" class="form-control" placeholder="在校表现" required>								    	
+								    		</td>
+								    		<td class="col-md-1"><div class="zmDiv">学习情况</div></td>
+								    		<td colspan="3">
+												<input id="zmXXQK" type="text" form="zmStudnetExpressForm" name="learing" class="form-control" placeholder="在校学习情况" required>								    	
+								    		</td>								    		
+								    	</tr>
+								    	<tr>
+								    		<td class="col-md-1"><div class="zmDiv">备注消息</div></td>
+								    		<td colspan="6">
+												<input id="zmPZXX" form="zmStudnetExpressForm" name="intro" type="text" class="form-control" placeholder="学生培训" required>								    	
+								    		</td>											
+											<td class="col-md-1"><Input type="submit" form="zmStudnetExpressForm" value="修改" class="btn btn-warning btn-block"></td>								    										    			
+								    	</tr>	
+								    	<tr><!-- 职务表 -->
+								    		<td class="col-md-1"><div class="zmDiv">任职年份<input type="hidden" value="" form="zmPositionForm" name="pid" id="zmMPID"></div></td>
+								    		<td class="col-md-2 zmtdWidth">
+												<div id="zmPMdate" class="controls input-append date" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+													<input id="zmPositionDate" form="zmPositionForm" name="times" size="16" class="form-control" value="" readonly="" type="text" required>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">任职学期</div></td>
+								    		<td class="col-md-2">
+    											<select id="zmPMItem" form="zmPositionForm" name="term" class="form-control" required>
+													<option value="1" selected>上学期</option>
+													<option value="2">下学期</option>
+												</select>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">任职职务</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmPSName" form="zmPositionForm" name="pname" type="text" class="form-control" placeholder="职务名称" required>
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">获得荣誉</div></td>
+								    		<td class="col-md-2">
+    											<select id="zmPLevels" form="zmPositionForm" name="levels" class="form-control" required>
+													<option value="1">校级干部</option>
+													<option value="2">院级干部</option>
+												</select>     											
+  											</td>
+								    	</tr>
+								    	<tr class="zmrow">
+								  			<td colspan="6"></td>
+								  			<td class="col-md-1"><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#zmMPList">更多职务信息</button></td>
+								  			<td class="col-md-1"><input form="zmPositionForm" type="submit" class="btn btn-warning btn-block" value="修改"></td>
+								  		</tr>
+								    	<tr><!-- 就业表 -->
+								    		<td class="col-md-1"><div class="zmDiv">就业时间<input type="hidden" value="" form="zmJopForm" name="wid" id="zmJobWID"></div></td>
+								    		<td class="col-md-2">
+												<div class="controls input-append date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+													<input id="zmJobDate" form="zmJopForm" name="times" size="16" class="form-control" value="" readonly="" required="" type="text">
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>    											
+  											</td>
+								    		<td class="col-md-1"><div class="zmDiv">公司名称</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmJobName" form="zmJopForm" name="company" type="text" class="form-control" placeholder="公司名称" required>
+  											</td>  																			    	
+								    		<td class="col-md-1"><div class="zmDiv">工资</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmJobSaray" form="zmJopForm" name="salary" type="number" class="form-control" placeholder="月薪" required>
+  											</td> 
+								    		<td class="col-md-1 zmtdColor"><div class="zmDiv">城市</div></td>
+								    		<td class="col-md-2">
+    											<input id="zmJobCity" form="zmJopForm" name="city" type="text" class="form-control" placeholder="工作城市" required>
+  											</td>
+								    	</tr>								    	
+								    	<tr>
+								    		<td class="col-md-1 zmtdColor"><div class="zmDiv">工作职务</div></td>
+											<td colspan="6">
+												<input id="zmJonDes" form="zmJopForm" name="position" type="text" class="form-control" pattern="^[\u4E00-\u9FA5]{2,10}$" placeholder="职业描述" required>								    	
+								    		</td>								    		
+								    		<td class="col-md-1"><input type="submit" form="zmJopForm" class="btn btn-warning btn-block" value="修改"></td>								    										    		
+								    	</tr>								    	
+								    </tbody>
+							</table>
+														
+							</div>				    
+					  </div>
+					
+					  <!-- Controls -->
+					</div>
+	
+					<!--学生信息修改轮换 -->
+		
+					</div>
+				</div>
+				<!-- 批量导入学生图片 -->
+				<div id="addImages" class="container" style="display:none">
+					<div class="row">	
+						<nav class="navbar navbar-default" role="navigation" style="display: block;">
+						<form id="zmImageForm" method="post" novalidate="novalidate">								 
+						    <div class="col-md-2">
+						      <select id="zmImageAcademy" name="zmImageAcademy" class="form-control" required></select>					      
+						    </div>					    					  				 
+						    <div class="col-md-2">
+									<div id="zmImageDate" class="controls input-append date"
+										data-date="" data-date-format="yyyy"
+										data-link-field="dtp_input2" data-link-format="yyyy">
+										<input name="imageUploadTime" size="16" class="form-control" readonly="" type="text" required>
+										<span class="add-on"><i class="icon-th"></i></span>
+									</div>
+									</div>
+							<div class="col-md-2">
+						      <input type="file" class="zmbtnwidth btn btn-success" multiple="multiple" name="inputBatchImgaes" id="inputBatchImgaes">
+						      <input class="zmbtncover btn btn-success" type="button" value="选择头像"></input>					      
+						    </div>					    
+						  	<button id="zmuploadSubmit" type="button" class="btn btn-success">上 传</button>
+						  </form>
+					  </nav>
+					  <nav class="navbar navbar-default" id="addImageNav" role="navigation" style="display: block;">
+						<div class="col-md-7">
+							<div class="progress progress-striped active">
+							  <div class="progress-bar" id="zmprogress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+							    <span class="sr-only"></span>
+							  </div>
+							</div>						
+						</div>
+						<div id="zmcompletepercent" class="col-md-5"></div>
+						<div id="zmuploadspeed" class="col-md-5"></div>
+						<div id="zmuploadtime" class="col-md-3"></div>
+						<div id="zmuploadsize" class="col-md-4"></div>
+					  </nav>
+					  <div class="alert alert-success" style="display: none;" id="zmuploadsucces"></div>
+					  <div id="zmimglists"></div>					  										  
+					</div>					
+				</div>
+				<!-- 添加学生基本信息 -->
+				<div id="addSdInfo" class="studentDetilInfo" style="display:none">
+					<nav class="navbar navbar-static-top" role="navigation">
+					</nav>
+					<form action="" onsubmit="return addstuInfo()" method="post">
+						<table class="detail_Info" cellpadding="0px" cellspacing="0px"
+							width="100%" align="center" height="350px">
+							<tbody>
+								<tr>
+									<td class="titleBgColor width80">
+										学号
+									</td>
+									<td width="150px">
+										<input id="jstunm" type="text" class="form-control" value=""
+											pattern="[0-9]{0,15}" required></input>
+									</td>
+									<td class="titleBgColor" width="100px">
+										姓名
+									</td>
+									<td width="150px">
+										<input id="jsname" type="text" class="form-control" value=""
+											pattern="[\u4E00-\u9FA5]{2,7}" required></input>
+									</td>
+									<td class="titleBgColor width110">
+										联系方式
+									</td>
+									<td width="110px">
+										<input id="jtel" type="text" class="form-control" value=""
+											pattern="(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)"
+											required></input>
+									</td>
+									<td class="titleBgColor width80">
+										性别
+									</td>
+									<td width="150px">
+										<div>
+											<input id="jboy" type="radio" value="男" name="jstusex" checked="checked" required>
+											男
+											<input id="jgirl" type="radio" value="女" name="jstusex" required>
+											女
+										</div>
+									</td>
+									<td class="person_img1" rowspan="7" width="130px">
+										<img src="imgs/person.jpg" width="120px" height="150px"
+											alt="08301440130.jpg" title="周晨枫" id="jphoto"/>
+										<p>
+											<input type="file" id="jphotofile" class="btnwidth btn btn-warning" value="选择文件" required/>
+											<input type="button" class="btncover btnwidth btn btn-warning" value="选择头像" />
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="titleBgColor">
+										学院
+									</td>
+									<td>
+										<div class="dropdown" id="myDrop">
+											<input id="jacademy" name="qq" data-toggle="dropdown"
+												class="form-control" type="text" value=""
+												placeholder="湖南工学院" pattern="[\u4E00-\u9FA5]{4,15}" required>
+											<ul id="jacademyUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></ul>
+										</div>
+									</td>
+									<td class="titleBgColor">
+										专业
+									</td>
+									<td>
+										<div class="dropdown" id="Mmajor">
+											<input id="jmajor" name="qq" data-toggle="dropdown"
+												class="form-control" type="text" value="" placeholder="专业"
+												pattern="[\u4E00-\u9FA5]{3,10}" required>
+											<ul id="jspecialty" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+											</ul>
+										</div>
+									</td>
+									<td class="titleBgColor">
+										所在班级
+									</td>
+									<td width="150px">
+										<div class="dropdown" id="jMgrade">
+											<input id="jclassname" name="grade" data-toggle="dropdown"
+												class="form-control" type="text" value="" placeholder="班级"
+												pattern="[\u4E00-\u9FA5,0-9]{4,10}" required>
+											<ul id="jgrades" class="jclass-menu dropdown-menu" role="menu" aria-labelledby="dLabel">
+											</ul>
+										</div>
+									</td>
+									<td class="titleBgColor">
+										宿舍
+									</td>
+									<td>
+										<input id="jdorm" class="form-control" name="shushe"
+											type="text" value=""
+											pattern="[A-Z0-9\-0-9\-A-Z]{8}" required>
+									</td>
+								</tr>
+								<tr>
+									<td class="titleBgColor">
+										QQ
+									</td>
+									<td>
+										<input id="jsqq" name="qq" class="form-control"
+											pattern="[0-9]{5,11}" type="text" value="" required>
+									</td>
+									<td class="titleBgColor">
+										邮箱
+									</td>
+									<td>
+										<input id="jemial" name="qq" class="form-control" type="email"
+											value="" required>
+									</td>
+									<td class="titleBgColor">
+										政治面貌
+									</td>
+									<td>
+										<div class="dropdown" id="Mpolitics">
+											<input id="jpolitics" name="politics" data-toggle="dropdown"
+												class="form-control" type="text" value="" placeholder="政治面貌"
+												pattern="[\u4E00-\u9FA5]{2,8}" required>
+											<ul id="jpoliticsul" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+												<li>
+													群众
+												</li>
+												<li>
+													共青团员
+												</li>
+												<li>
+													中共党员
+												</li>
+											</ul>
+										</div>
+									</td>
+									<td class="titleBgColor">
+										籍贯
+									</td>
+									<td id="jiguan">
+										<input id="jbirthplace" class="form-control" name="parentname"
+											type="text" value="" pattern="[\u4E00-\u9FA5]{4,10}"
+											required>
+									</td>
+								</tr>
+								<tr>
+									
+									<td class="titleBgColor">
+										父母姓名
+									</td>
+									<td>
+										<input id="jparentName" class="form-control" name="parentname"
+											type="text" value="" pattern="[\u4E00-\u9FA5]{2,7}"
+											required>
+									</td>
+									<td class="titleBgColor">
+										父母电话
+									</td>
+									<td>
+										<input id="jptel" class="form-control" name="parenttel"
+											type="text" value=""
+											pattern="(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)"
+											required>
+									</td>
+									
+									<td class="titleBgColor">
+										出生年月
+									</td>
+									<td>
+
+										<div class="controls input-append date form_date" data-date=""
+											data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+											data-link-format="yyyy-mm-dd">
+											<input id="jbirthDate" size="16" type="text"
+												class="form-control" value="" readonly required>
+											<span class="add-on"><i class="icon-remove"></i> </span>
+											<span class="add-on"><i class="icon-th"></i> </span>
+										</div>
+									</td>
+									
+									<td class="titleBgColor">
+										状态
+									</td>
+									<td>
+										<div class="dropdown" id="condition">
+											<input id="jmcondition" name="qq" data-toggle="dropdown"
+												class="form-control" type="text" value=""
+												placeholder="学生在校状态" required readonly="readonly">
+											<ul id="jmconditionul" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></ul>
+										</div>
+									</td>
+									
+									
+								</tr>
+								<tr>
+									<td class="titleBgColor">
+										民族
+									</td>
+									<td>
+										<input id="jprovin" class="form-control" name="provin"
+											type="text" value="" pattern="[\u4E00-\u9FA5]{1,10}"
+											required>
+									</td>
+									
+									<td class="titleBgColor">
+										贫困等级
+									</td>
+									<td>
+										<div class="dropdown" id="poverty">
+											<input id="jmpoverty" name="qq" data-toggle="dropdown"
+												class="form-control" type="text" value=""
+												placeholder="学生家庭情况" required readonly="readonly">
+											<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="jmpovertyul"></ul>
+										</div>
+									</td>
+									
+									
+									<td class="titleBgColor">
+										身份证
+									</td>
+									<td colspan="3">
+										<input id="jidcared" class="form-control" name="idcared"
+											type="text" value=""
+											pattern="^[\d]{6}(19|20)[\d]{2}((0[1-9])|(11|12))([012][\d]|(30|31))[\d]{3}[xX\d]$"
+											required>
+									</td>
+								</tr>
+								<tr>
+									<td class="titleBgColor">
+										住址
+									</td>
+									<td colspan="6" class="contentstyle">
+										<div id="myContent">
+											<div id="jscollorContent">
+												<div id="jaddrxg">
+													<div class="myinpuwdth">
+														<input type="text" id="jsr1" class="form-control"
+															placeholder="省份" required>
+													</div>
+													<div class="myinpuwdth">
+														<input type="text" id="jci1" class="form-control"
+															placeholder="城市" required>
+													</div>
+													<div class="myinpuwdth">
+														<input type="text" id="jco1" class="form-control"
+															placeholder="县级">
+													</div>
+													<div class="muyinputwdd">
+														<input id="jTownaddress" type="text" class="form-control"
+															placeholder="镇/乡/村/组/...">
+													</div>
+												</div>
+												<script type="text/javascript">
+										            new locationCard({
+										                ids: ['jsr1', 'jci1', 'jco1']
+										            }).init();
+										        </script>
+											</div>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td colspan="6"></td>
+									<td>
+										<input type="submit" value="确 认" class="btn btn-success">
+									</td>
+									<td><input type="reset" id="addStuInfocz" value="重置" class="btn btn-danger"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<!-- end添加学生基本信息 -->
+
+				<!---table部分，全部的信息-->
+				<div class="tab_show" id="tab_show">
+					
+				</div>
+				<div class="lp_table table-responsive" id="zxk_maintable" style="display:none;">
+				
+				</div>
+				<div class="lp_table table-responsive" id="lp_stuPsyShows" style="display:none;">
+					<table id="stuPsyShows_table" class="mytable table table-condensed table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<td class="titleBgColor">学号</td>
+								<td class="titleBgColor">姓名</td>
+								<td class="titleBgColor">申请人</td>
+								<td class="titleBgColor">书记意见</td>
+								<td class="titleBgColor">学工处意见</td>
+								<td class="titleBgColor">状态</td>
+								<td class="titleBgColor">等级</td>
+								<td class="titleBgColor">申请时间</td>
+							</tr>
+						</thead>
+						<tbody id="lp_stuPsyFinishInfo"></tbody>
+					</table>
+				</div>
+				
+				<div id="changepwdwindow" style="display:none;">
+					<nav class="navbar navbar-static-top" role="navigation">
+					</nav>
+					<div id="changepwdInfo"></div>
+				</div>
+				
+				<div class="zxk_table" id="zxk_dataDictonray" style="display:none;">
+					<nav class='navbar navbar-static-topzxk' role='navigation'><button class='btn btn-lg btn-default' disabled='disabled' type='button'>数据字典管理</button></nav><div id='dataDirectryfind' style='width:100%; float:left; '><div style='width:150px; float:left;'><span style='font-family:\"微软雅黑\"; font-size:16px; line-height:200%;'>&nbsp;&nbsp;&nbsp;数据类型：</span></div><div style='width:150px; float:left;'><select class='form-control' id='zxk-data-dtype' value='请选择类型'><option>请选择类型</option><option value='1'>贫困等级</option><option value='2'>学生状态</option><option value='3'>贷款银行</option><option value='4'>勤工俭学工作岗位</option></select> </div><div style="float:right; margin-right:50px; width:600px;"> &nbsp;&nbsp;<div style='width:150px; float:left;'><select class='form-control' id='zxk-dleixing' value='请选择类型'><option>请选择类型</option><option value='1'>贫困等级</option><option value='2'>学生状态</option><option value='3'>贷款银行</option><option value='4'>勤工俭学工作岗位</option></select></div>&nbsp;&nbsp;<div style='width:150px; float:left;'><input id="zxk-dmingzi" class="form-control" type="text" placeholder="数据名字"></div>  &nbsp;&nbsp; <div style='width:150px; float:left;'><input id="zxk-dintro" class="form-control" type="text" placeholder="数据描述"> </div>    <div style='width:100px; float:right;'><button class='btn btn-warning' onclick='addDataDictionary()'>添  加</button>  </div> </div>  </div><div id='zxk_ddfing' class='table-responsive' style='float:left; width:100%; margin-top:20px;'></div>
+				</div>
+				
+				<div id="zxk_dataAccommdation" style="display:none;">
+					<nav class="navbar navbar-default" id="zxk-accommquery" role="navigation">
+						<div class="row" style="margin-top: 8px; margin-left: 5px;">
+							<div class="col-xs-2" >
+								<input type="text" class="form-control" placeholder="公寓号"
+									id="zxk-gongyu">
+							</div>
+							<div class="col-xs-2" >
+								<input type="text" class="form-control"
+									placeholder="楼栋号" id="zxk-loudong">
+							</div>
+							<div class="col-xs-2" >
+								<input type="text" class="form-control" placeholder="输入床位号"
+									id="zxk-chuangwei">
+							</div>
+							
+							<div class="col-xs-2" >
+								<input type="text" class="form-control" placeholder="输入价格"
+									id="zxk-cwjg">
+							</div>
+							
+							<button type="button" data-loading-text="正在加载..." class="btn btn-warning" id="zxk-selectaccomm"
+								onclick="findKongChuang(1)">
+								查询
+							</button>
+							
+							<button type="button" class="btn btn-danger" data-target="#myModals-zxk-ssxxexport" data-toggle="modal" onclick="clearexKss()" >
+								导出
+							</button>  
+							 
+							<button type="button" class="btn btn-primary" onclick="zxkchongzhi()">
+								重置
+							</button>
+							<button type="button" id="zxk-cxsyssxx" class="btn btn-warning" onclick="findAllaccoms(1)">
+								查询所有宿舍
+							</button>
+							<button type="button" id="zxk-ssfpbtn" disabled class="btn btn-danger" data-target="#myModals-zxk-ssfp" data-toggle="modal" onclick="getFenpeidept()" >
+								分配
+							</button>
+						</div>
+					</nav>
+					<div id="accom_main"></div>
+				</div>
+				
+				<!-- 学工处查询已分配宿舍 -->
+				<div id="zxk_dataAccommdation1" style="display:none;">
+					<nav class="navbar navbar-default" id="zxk-accommquery1" role="navigation">
+						<div class="row" style="margin-top: 8px; margin-left: 5px;">
+							<div class="col-xs-2" >
+								<input type="text" class="form-control" placeholder="公寓号"
+									id="zxk-gongyu1">
+							</div>
+							<div class="col-xs-2" >
+								<input type="text" class="form-control"
+									placeholder="楼栋号" id="zxk-loudong1">
+							</div>
+							
+							<div class="col-xs-2" >
+								<input type="text" class="form-control" placeholder="输入价格"
+									id="zxk-cwjg1">
+							</div>
+							<div class="col-xs-2" >
+								<select class="form-control" id="zxk-cwxy1">
+									
+								</select>
+							</div>
+							
+							<button type="button" data-loading-text="正在加载..." class="btn btn-warning" id="zxk-selectaccomm1"
+								onclick="findXgcYFChuang(1)">
+								查询
+							</button>
+							
+							<button type="button" class="btn btn-danger" data-target="#myModals-zxk-ssxxexport" data-toggle="modal" onclick="clearexKss()" >
+								导出
+							</button>  
+							 
+							<button type="button" class="btn btn-primary" onclick="zxkchongzhix()">
+								重置
+							</button>
+						</div>
+					</nav>
+					<div id="accom_main1"></div>
+				</div>
+				
+				<!-- 宿舍处分 -->
+				<div id="zxk_sushechufen" style="display:none;">
+					<nav class="navbar navbar-default" id="zxk-accommquery" role="navigation">
+						<div class="row" style="margin-top: 8px; margin-left: 5px;">
+							<div class="col-xs-2">
+								<input type="text" class="form-control" placeholder="公寓号"
+									id="zxk-chufengongyu">
+							</div>
+							<div class="col-xs-2">
+								<input type="text" class="form-control"
+									placeholder="楼栋号" id="zxk-chufenloudong">
+							</div>
+							<div class="col-xs-2">
+								<input id="zxk-sushechufen-times" class="form-control" placeholder="年份（如：2014）"></input>
+							</div>
+							
+							<div class="col-xs-2">
+								<select id="zxk-sushechufen-term" name="zxk-sushechufen-term" class="form-control" required>
+									<option></option>
+									<option>1</option>
+									<option>2</option>
+								</select>
+							</div>
+							
+							<button type="button" data-loading-text="正在加载..." class="btn btn-warning" id="zxk-selectsushechufen"
+								onclick="findSusheChufen(1)">
+								查询
+							</button>
+							
+							<button type="button" class="btn btn-danger" onclick="BtnExport('HourseChufen','sushechufen','criticism','楼栋号，宿舍号，通报年份，学期，通报内容，通报等级')">
+								导出    <!-- TODO -->
+							</button>  
+							 
+							<button type="button" class="btn btn-primary" onclick="zxksscfchongzhi()">
+								重置
+							</button>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px;">*注意：鼠标点击对应"处分编号"对数据进行操作</font>
+					</nav>
+					<div id="zxk-sscfquerys" margin-right='50px'>&nbsp;&nbsp;<div style='width:100px; float:left;'><input id="zxk-sscfid" class="form-control" type="text" placeholder="处分ID" disabled="disabled" /></div>&nbsp;&nbsp;<div style='width:160px; float:left;'><input id="zxk-sscfname" class="form-control" type="text" placeholder="宿舍名字（如:B1-101）"></div> &nbsp;&nbsp;<div style='width:150px; float:left;'><input id="zxk-sscftimes" class="form-control" type="text" placeholder="时间（如:2014-1）"></div>&nbsp;&nbsp;<div style='width:220px; float:left;'><input id="zxk-sscfneirong" class="form-control" type="text" placeholder="处分内容"></div>  &nbsp;&nbsp; <div style='width:150px; float:left;'><input id="zxk-sscfdengji" class="form-control" type="text" placeholder="等级（1.校级  2.院级）"> </div>    <div style='width:260px; float:left; display:inline;'><button id="sscfxgbtn" class='btn btn-warning' onclick='xiugaisscf()' disabled="disabled">修改</button> <button id="sscftjbtn" class='btn btn-primary' onclick='tianjiasscf()'>添加</button>   <button id="sscfdelbtn" class='btn btn-danger' onclick='zxkdelsscf()'>删除</button><button id="sscfczbtn" style="margin-left:10px;" class='btn btn-primary' onclick='zchongzhisscf()'>重置</button>  </div> </div><br/><br/>
+					<div id="accomchufen_main"></div>
+				</div>
+				
+				<!-- 学生处分 -->
+				<div id="zxk_xschufen" style="display:none;">
+					<nav class="navbar navbar-default" id="zxk-xscfquery" role="navigation">
+						<div class="row" style="margin-top: 8px; margin-left: 5px;">
+							<div class="col-xs-2">
+								<input type="text" class="form-control" placeholder="学号"
+									id="zxk-xschufensnum">
+							</div>
+							<div class="col-xs-2">
+								<div class="controls input-append date form_date" data-date=""
+													data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+													data-link-format="yyyy-mm-dd">
+									<input id="zxk-xscfshijian" name="zxk-xscfshijian" size="16" type="text"
+										class="form-control" value="时间" readonly required>
+									<span class="add-on"><i class="icon-remove"></i> </span>
+									<span class="add-on"><i class="icon-th"></i> </span>
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<input id="zxk-xscfclname" class="form-control" placeholder="班级"></input>
+							</div>
+							<div class="col-xs-2">
+								<input id="zxk-xscfname" class="form-control" placeholder="姓名"></input>
+							</div>
+							
+							<div class="col-xs-2">
+								<select id="zxk-xscflevels" name="zxk-xscflevels" class="form-control" required>
+									<option></option>
+									<option value="1">校级</option>
+									<option value="2">院级</option>
+								</select>
+							</div>
+							
+							<button type="button" data-loading-text="正在加载..." class="btn btn-warning" id="zxk-selectxscf"
+								onclick="findXuesChufen()">
+								查询
+							</button>
+							
+							<button type="button" class="btn btn-danger" onclick="BtnExport('ChuFen','xscfInfo','studentSanction','学号，姓名，专业，班级，受处分日期，处分内容，处分等级')" >
+								导出
+							</button>  
+							 
+							<button type="button" class="btn btn-primary" onclick="zxkxscfchongzhi1()">
+								重置
+							</button>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px;">*注意：鼠标点击对应"序列号"对数据进行操作</font>
+					</nav>
+					
+					<div id="zxk-sxcfqueryszc" margin-right='50px'>&nbsp;&nbsp;<div style='width:60px; float:left;'><input id="zxk-xscfid1" class="form-control" type="text" placeholder="处分ID" disabled="disabled" /></div>&nbsp;&nbsp;<div style='width:150px; float:left;'><input id="zxk-xscfsnum1" class="form-control" type="text" placeholder="学生学号" ></div> &nbsp;&nbsp;<div style='width:150px; float:left;'><div class="controls input-append date form_date" data-date=""
+													data-date-format="yyyy-mm-dd  " data-link-field="dtp_input2"
+													data-link-format="yyyy-mm-dd">
+									<input id="zxk-xscfshijian1" name="zxk-xscfshijian1" size="16" type="text"
+										class="form-control" value="时间" readonly required>
+									<span class="add-on"><i class="icon-remove"></i> </span>
+									<span class="add-on"><i class="icon-th"></i> </span>
+								</div></div>&nbsp;&nbsp;<div style='width:300px; float:left;'><input id="zxk-xscfcontent1" class="form-control" type="text" placeholder="处分内容"></div>  &nbsp;&nbsp; <div style='width:150px; float:left;'><select  class="form-control" id="zxk-xscfdengji1"> <option value="1" selected="selected">校级</option><option value="2">院级</option> </select></div>    <div style='width:240px; float:left; display:inline;'><button id="xscfxgbtn" class='btn btn-primary' onclick='xiugaixscf()' disabled="disabled" >修改</button> <button id="xscftjbtn" class='btn btn-primary' onclick='tianjiaxscf()'>添加</button> <button id="xscfscbtn" class='btn btn-danger' onclick='shanchuxscf()' disabled="disabled">删除</button>  <button id="xscfczbtn" class='btn btn-primary' onclick='zchongzhixscf()'>重置</button> </div> </div><br/>
+					
+					<div id="zxk-xscf-datial">
+					
+					<div class="jtablescroll">	
+					<table class="jtabledetail table-condensed table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<td style="display:none;" dataProperty="hindex" dtaDisplay="none">编号</td>
+								<td class="xscfaddfun" width="5%"  dataProperty="hindex" dataCheckBox="true">序号</td>
+								<td width="5%" dataProperty="cid">序列号</td>
+								<td width="15%" dataProperty="snum">学号</td>
+								<td width="10%" dataProperty="temp2">专业</td>
+								<td width="10%" dataProperty="temp3">班级</td>
+								<td width="10%" dataProperty="temp1">姓名</td>
+								<td width="10%" dataProperty="dates">日期</td>
+								<td width="25%" dataProperty="content">内容</td>
+								<td width="5%" dataProperty="levels">等级</td>
+							</tr>					
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					</div>
+				
+					<center>
+					<ul class="pagination">
+					</ul>
+				</center>
+				
+				</div>
+				</div>
+				<!-- 学生处分结束 -->
+				
+				<div id="zxk_xiugaiQinshi" style="display:none; margin-right:400px;">
+					<button type='button' class='btn btn-lg btn-default' disabled='disabled'>宿舍信息修改</button>
+					<br/><br/>
+					<form class="form-horizontal" role="form">
+						<input type="hidden" id="accommhidden" >
+					  <div class="form-group">
+					    <label for="cloudong" class="col-sm-2 control-label">楼栋：</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="cloudong" placeholder="楼栋号">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="csushe" class="col-sm-2 control-label">宿舍：</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="csushe" placeholder="宿舍号">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="cchuangwei" class="col-sm-2 control-label">床位：</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="cchuangwei" placeholder="床位号">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="zxk_cjiage" class="col-sm-2 control-label">价格：</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="zxk_cjiage" placeholder="价   格">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="zxk_cstatus" class="col-sm-2 control-label">状态：</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="zxk_cstatus" placeholder="状态（1.已住    2.未住）"><label>(0.占用   1.已住   2.未住)</label>
+					    </div>
+					  </div>
+					  <div class="form-group">
+    					<div class="col-sm-offset-2 col-sm-10"><center>
+    						<button type="button" onclick="xiugaiAccomm()" class="btn btn-lg btn-primary">修    改</button>&nbsp;&nbsp;<button type="button" onclick="quxiaoaccomm()" class="btn btn-lg btn-warning">取    消</button>
+    					</center>
+    					</div>
+				  	  </div>
+					</form>
+				</div>				
+				
+				<!--分页-->
+				<div class="lp_fenye" id="myFenye" style="margin-buttom: 10px;">
+				
+				</div>
+				<!-- 右键菜单 -->
+				<div id="right_menu"></div>
+					
+				<div class="col-md-12" id="zxk-sushe-batch" style="display: none;">
+					<button type="button" class="btn btn-lg btn-defprimary "
+						disabled="disabled">
+						请选择要操作的项:
+					</button>
+					<br/><br/>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-danger"
+							style="width: 100px;">
+							宿舍信息
+						</button>
+						<button type="button" class="btn btn-danger dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'accommodation')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+				<!-- 批量导入 -->
+				<div class="col-md-12" id="jien-batch" style="display: none;">
+					<button type="button" class="btn btn-lg btn-defprimary "
+						disabled="disabled">
+						请选择要操作的项:
+					</button>
+					<br/><br/>
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-warning" style="width: 100px;">
+							班级
+						</button>
+						<button type="button" class="btn btn-warning dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'classes')">
+								<a href="javascript:void(0)" data-toggle="modal"
+									data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-info" style="width: 100px;">
+							学生
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'stuInfo')">
+								<a href="javascript:void(0)" data-toggle="modal"
+									data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-success"
+							style="width: 100px;">
+							学生详细
+						</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'stuDetailInfo')">
+								<a href="javascript:void(0)" data-toggle="modal"
+									data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-danger" style="width: 100px;">
+							荣誉
+						</button>
+						<button type="button" class="btn btn-danger dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'honor')">
+								<a href="javascript:void(0)" data-toggle="modal"
+									data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-success"
+							style="width: 100px;">
+							职务
+						</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'positionInfo')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-info" style="width: 100px;">
+							处分
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'chuFen')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-warning" style="width: 100px;">
+							寝室通报
+						</button>
+						<button type="button" class="btn btn-warning dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'hourseChufen')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-warning"
+							style="width: 100px;">
+							四六级成绩详情
+						</button>
+						<button type="button" class="btn btn-warning dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'cetScore')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-info"
+							style="width: 100px;">
+							就业
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'worksInfo')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-success"
+							style="width: 100px;">
+							证书
+						</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'allCertificate')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-danger"
+							style="width: 100px;">
+							宿舍信息
+						</button>
+						<button type="button" class="btn btn-danger dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'accommodation')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-success"
+							style="width: 100px;">
+							贷款
+						</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'helper')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-info"
+							style="width: 100px;">
+							勤工助学
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li onclick="guide(1,'jobInfo')">
+								<a href="#" data-toggle="modal" data-target="#myModal-jien">导入</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">修改</a>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="lp_batch btn-group">
+						<button type="button" class="btn btn-warning"
+							style="width: 100px;">
+							其它
+						</button>
+						<button type="button" class="btn btn-warning dropdown-toggle"
+							data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+					</div>
+					
+				</div>
+				<!-- end批量导入 -->
+			</div>
+			
+			<!-- 贷款信息 --><!-- 请大家以后加显示块的话 调用class="overlap col-md-10" 然后依次写下去  id自己命名  display已经默认为none-->
+			<div class="overlap col-md-10" id="jhelpwindow">
+				<nav class="navbar navbar-default" role="navigation">
+					<button type='button' class='btn btn-lg btn-default' disabled='disabled' style="float:left;">学生贷款信息查询</button>
+					<form action="" onsubmit="return jqueryhelp(this)" style="float:left;margin-left:160px;margin-top:8px;width:768px;" method="post">
+						<input type="text" class="col-jout-1 form-control" value="" placeholder="请输入学号" pattern="[\d]{11}" />
+						<div class="dropdown">
+							<input type="text" data-toggle="dropdown" value=""
+								class="col-jout-1 form-control" id="jhelpclass" max="5" min="3"
+								readonly="readonly" placeholder="请选择班级"/>
+							<ul class="dropdown-menu jhelpul" id="jhelpulclass" role="menu" aria-labelledby="dLabel" style="margin-top:35px;margin-left:202px;">
+							</ul>
+						</div>
+						<div class="dropdown">
+							<input type="text" data-toggle="dropdown" value=""
+								class="col-jout-1 form-control" id="jhelpbank" max="5" min="3"
+								readonly="readonly" placeholder="请选择贷款银行"/>
+							<ul class="dropdown-menu jhelpul" id="jhelpulbank" role="menu" aria-labelledby="dLabel" style="margin-top:35px;margin-left:392px;">
+							</ul>
+						</div>
+						<button type="submit" class="btn btn-jien btn-warning" style="margin-left:10px;width:70px;" data-complete-text="查询" data-loading-text="正在查询...">查询</button>
+						<button type="button" class="btn btn-danger" onclick="BtnExport('HelperNeedInfo','JhnInfo','studentInfoHelp','学号，姓名，性别，班级，身份证号码，贷款合同号，状态，贷款时间，贷款银行，贷款金额，联系方式')">导出</button>
+						<button type="reset" class="btn btn-primary">重置</button>
+					</form>
+				</nav>
+				&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px;">*注意：鼠标右击对应数据对数据进行操作</font>
+				<ul class="rightclick" id="Jien_Help_P">
+					<li class="btn-info"><font>添加</font></li>
+					<li class="btn-success" style="display:none;"><font>修改</font></li>
+					<li class="btn-success" data-toggle="modal" data-target="#Jien_Help_Dialog" style="display:none;"><font></font></li>
+					<li class="btn-warning" style="display:none;"><font>删除</font></li>
+				</ul>
+				
+				<div id="jhelpalldetail">
+					
+					<div class="jtablescroll">	
+					<table class="jtabledetail table-condensed table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<td style="display:none;" dataProperty="hid" dtaDisplay="none">编号</td>
+								<td width="4%"  dataProperty="hindex" dataCheckBox="true">序号</td>
+								<td width="10%" dataProperty="snum">学号</td>
+								<td width="6%" dataProperty="sname">姓名</td>
+								<td width="4%" dataProperty="sex">性别</td>
+								<td width="10%" dataProperty="cname">班级</td>
+								<td width="14%" dataProperty="idcard">身份证号码</td>
+								<td width="15%" dataProperty="contract">贷款合同号</td>
+								<td width="5%" dataProperty="status">状态</td>
+								<td width="8%" dataProperty="times">贷款时间</td>
+								<td width="7%" dataProperty="bank">贷款银行</td>
+								<td width="7%" dataProperty="money">贷款金额</td>
+								<td width="10%" dataProperty="phone">联系方式</td>
+							</tr>					
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					</div>
+				
+				<center>
+					<ul class="pagination">
+					</ul>
+				</center>
+				
+				</div>
+				<form action="" onsubmit="return jhelpoperate()" id="jhelptable" method="post" style="display:none;">
+					<table class="jhelptable" cellpadding="0px" cellspacing="0px" align="center">
+						<tbody>
+						<tr>
+								<td class="titleBgColor" width="80px">班级</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown" id="jaddhelp"
+											class="form-control" type="text" max="5" min="3" readonly="readonly" placeholder="请选择班级" required />
+										<ul class="dropdown-menu jhelpul" id="jaddhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>								
+								</td>
+								
+								<td class="titleBgColor" width="80px">学号</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown" id="jstunum"
+											class="form-control" type="text" max="5" min="3" required="required" readonly="readonly" placeholder="请选择学号" />
+										<ul class="dropdown-menu jhelpul jstunumul" id="jstunumul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>	
+								</input></td>
+								
+								<td class="titleBgColor" width="80px">姓名</td>
+								<td><input type="text" class="form-control" value="" readonly="readonly" required></input></td>
+								<td class="titleBgColor" width="80px">联系方式</td>
+								<td><input type="text" class="form-control" value="" 
+								pattern="(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)" required></input></td>
+							</tr>
+							<tr>
+								<td class="titleBgColor" width="80px">
+									贷款银行
+								</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control jhelpbank" type="text" max="5" min="3" readonly="readonly" placeholder="请选择贷款银行" required />
+										<ul class="dropdown-menu jhelpul jhelpulbank" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>
+								</td>
+								<td class="titleBgColor" width="80px">贷款时间</td>
+								<td>
+									<div class="controls input-append date form_date" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+										<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+										<span class="add-on"><i class="icon-remove"></i> </span>
+										<span class="add-on"><i class="icon-th"></i> </span>
+									</div>
+								</td>
+								<td class="titleBgColor" width="80px">贷款金额</td>
+								<td><input type="text" class="form-control" value="" pattern="[\d]{1,8}.[\d]{2}" required></input></td>
+								<td class="titleBgColor" width="80px">合同号</td>
+								<td><input type="text" class="form-control" value="" required></input></td>
+							</tr>
+							<tr id="jhelpbtn">
+								<td colspan="7"></td>
+								<td>
+									<button type="submit" class="btn btn-danger">添加</button>
+									<button type="button" class="btn btn-primary" style="margin-left:20px;">返回</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+			</div>
+			<!-- 荣誉查询 -->
+			 <div class="overlap col-md-10" id="lp_searchHonour">
+				<nav class="navbar navbar-default" role="navigation">
+					<button type='button' class='btn btn-lg btn-default' disabled='disabled' style="float:left;">学生荣誉信息查询</button>
+					<form action="" onsubmit="return lp_searchHonour()" style="float:left;margin-left:160px;margin-top:8px;width:768px;" method="post">
+						<input type="text" id="lp_stuHonorId" class="col-jout-1 form-control" value="" placeholder="请输入学号" pattern="[\d]{11}" />
+						<input type="text" id="lp_stuHonorName" class="col-jout-1 form-control" value="" placeholder="请输入姓名" />
+						<div class="dropdown">
+							<input type="text" id="lp_class" data-toggle="dropdown" value=""
+								class="col-jout-1 form-control" max="5" min="3"
+								readonly="readonly" placeholder="请选择班级"/>
+							<ul class="dropdown-menu jhelpul" id="lp_stuHonorClass" role="menu" aria-labelledby="dLabel" style="margin-top:35px;margin-left:390px;">
+							</ul>
+						</div>
+						<button type="submit" class="btn btn-lp btn-warning" style="margin-left:10px;width:70px;" data-complete-text="查询" data-loading-text="正在查询...">查询</button>
+						<button type="button" class="btn btn-danger" onclick="BtnExport('Honor','xsryexport','studentHonor','学号，姓名，性别，班级，获得荣誉名称，获得荣誉年份，学期，荣誉等级，政治面貌，联系电话')">导出</button>
+						<button type="reset" class="btn btn-primary">重置</button>
+					</form>
+				</nav>
+				&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px; margin-right: 20px;">*注意：鼠标右击对应数据对数据进行操作</font>
+				<ul class="rightclick" id="lp_Jien_Help_P">
+					<li class="btn-info"><font>添加</font></li>
+					<li class="btn-success" style="display:none;"><font>修改</font></li>
+					<li class="btn-success" data-toggle="modal" data-target="#Lp_Honor_Dialog" style="display:none;"><font></font></li>
+					<li class="btn-warning" style="display:none;"><font>删除</font></li>
+				</ul>
+				
+				<div id="lp_searchHonourDetail">
+					<div class="jtablescroll">	
+						<table class="jtabledetail table-condensed table-hover table-striped table-bordered">
+							<thead>
+								<tr>
+									<td style="display:none;" dataProperty="hid" dtaDisplay="none">编号</td>
+									<td width="4%" dataCheckBox="true"></td>
+									<td width="4%"  dataProperty="snum">学号</td>
+									<td width="10%"  dataProperty="sname">姓名</td>
+									<td width="10%" dataProperty="cname">班级</td>
+									<td width="15%" dataProperty="hname">荣誉名</td>
+									<td width="6%" dataProperty="levels">等级</td>
+									<td width="6%" dataProperty="term">获奖学期</td>
+									<td width="6%" dataProperty="times">获奖年份</td>
+									<td width="4%" dataProperty="sex">性别</td>
+									<td width="10%" dataProperty="prole">政治面貌</td>
+									<td width="10%" dataProperty="tel">联系方式</td>
+								</tr>					
+							</thead>
+							<tbody>
+							
+							</tbody>
+						</table>
+					</div>
+				
+				<center>
+					<ul class="pagination">
+					</ul>
+				</center>
+				
+				</div>
+				<form action="" onsubmit="return lp_honorPoperate()" id="lp_jhelptable" method="post" style="display:none;">
+					<table class="jhelptable" cellpadding="0px" cellspacing="0px" align="center">
+						<tbody>
+						<tr>
+							<td class="titleBgColor" width="80px">学号</td>
+							<td><input type="text" class="form-control" id="lp_jstunum" value="" readonly="readonly" required></input></td>
+							
+							<td class="titleBgColor" width="80px">姓名</td>
+							<td><input type="text" class="form-control" value="" readonly="readonly" required></input></td>
+							
+							<td class="titleBgColor" width="80px">荣誉名</td>
+							<td><input type="text" class="form-control" id="lp_honor" value="" required></input></td>
+						</tr>
+						<tr>
+							<td class="titleBgColor" width="80px">
+								获奖学期
+							</td>
+							<td>
+								<div class="dropdown">
+									<input name="" data-toggle="dropdown"
+										class="form-control jhelpbank" type="text" max="5" min="3" readonly="readonly" placeholder="请选择获奖学期" required />
+									<ul class="dropdown-menu jhelpul jhelpulbank" role="menu" aria-labelledby="dLabel">
+										<li>上学期</li>
+										<li>下学期</li>
+									</ul>
+								</div>
+							</td>
+							<td class="titleBgColor" width="80px">获奖年份</td>
+							<td>
+								<div class="controls input-append date" id="lp_honor" data-date=""
+									data-date-format="yyyy" data-link-field="dtp_input2"
+									data-link-format="yyyy">
+									<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+									<span class="add-on"><i class="icon-remove"></i> </span>
+									<span class="add-on"><i class="icon-th"></i> </span>
+								</div>
+							</td>
+							<td class="titleBgColor" width="80px">
+								获奖等级
+							</td>
+							<td>
+								<div class="dropdown">
+									<input name="" data-toggle="dropdown"
+										class="form-control jhelpbank" type="text" max="5" min="3" readonly="readonly" placeholder="请选择等级" required />
+									<ul class="dropdown-menu jhelpul jhelpulbank" role="menu" aria-labelledby="dLabel">
+										<li>校级</li>
+										<li>院级</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						<tr id="lp_jhelpbtn">
+							<td colspan="7"></td>
+							<td>
+								<button type="submit" class="btn btn-danger">添加</button>
+								<button type="button" class="btn btn-primary" style="margin-left:20px;">返回</button>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+			<!-- 显示跟踪信息 -->
+			<div class="lp_overlap overlap col-md-10" style="width:1122px;" id="lp_followStuInfo">
+			  <div class="jumbotron" style="height:520px;overflow:scroll;">
+		        <a class="lp_returnBtn btn btn-md btn-primary" href="javascript:showStuPsyInfoList()" role="button">返回 &raquo;</a>
+		        <h4></h4>
+				<table class="table table-hover" id="lp_followTable">
+					<thead>
+					  <tr>
+					  	<td>时间</td>
+					  	<td>内容</td>
+					  	<td>发表人</td>
+					  </tr>
+					</thead>
+				    <tbody id="showfollowInfos">
+				    
+				    </tbody>
+				</table>
+		      </div>
+			</div>
+			
+			<!-- 勤工助学 -->
+			<div class="overlap col-md-10" id="jien_jobwindow">
+				<nav class="navbar navbar-default" role="navigation">
+					<form action="" onsubmit="return jQueryJob(this)" style="float:left;margin-top:8px;width:1115px;" method="post">
+						<input type="text" class="col-jout-1 form-control" value="" placeholder="请输入学号" pattern="[\d]{11}" />
+						<div class="dropdown">
+							<input type="text" data-toggle="dropdown" value=""
+								class="col-jout-2 form-control" max="5" min="3" id="jjobclass"
+								readonly="readonly" placeholder="请选择班级"/>
+							<ul class="dropdown-menu jhelpul_1"  role="menu" id="jjobulclass" aria-labelledby="dLabel" style="margin-top:35px;margin-left:202px;">
+							</ul>
+						</div>
+						<div class="dropdown">
+							<input type="text" data-toggle="dropdown" value=""
+								class="col-jout-2 form-control" max="5" min="3" id="jjobpos"
+								readonly="readonly" placeholder="请选择工作岗位"/>
+							<ul class="dropdown-menu jhelpul_1" role="menu" id="jjobulpos" aria-labelledby="dLabel" style="margin-top:35px;margin-left:382px;">
+							</ul>
+						</div>
+						<div class="controls input-append date form_date col-jout-2" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+							<input size="16" type="text" class="form-control" placeholder="请选择开始时间" value="" readonly required>
+							<span class="add-on"><i class="icon-remove"></i> </span>
+							<span class="add-on"><i class="icon-th"></i> </span>
+						</div>
+						<div class="controls input-append date form_date col-jout-2" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+							<input size="16" type="text" class="form-control" placeholder="请选择结束时间" value="" readonly required>
+							<span class="add-on"><i class="icon-remove"></i> </span>
+							<span class="add-on"><i class="icon-th"></i> </span>
+						</div>
+						<button type="submit" class="btn btn-jien btn-warning" style="margin-left:18px;width:70px;" data-complete-text="查询" data-loading-text="正在查询...">查询</button>
+						<button type="button" class="btn btn-danger" onclick="BtnExport('JobNeedInfo','JjnInfo','studentInfoJob','学号，姓名，性别，班级，身份证号码，联系方式，工作岗位，开始时间，结束时间')">导出</button>
+						<button type="reset" class="btn btn-primary">重置</button>
+					</form>
+					&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px;">*注意：鼠标右击对应数据对数据进行操作</font>
+				</nav>
+				
+				<ul class="rightclick" id="Jien_Job_P">
+					<li class="btn-info"><font>添加</font></li>
+					<li class="btn-success" style="display:none;"><font>修改</font></li>
+					<li class="btn-success" data-toggle="modal" data-target="#Jien_Job_Dialog" style="display:none;"><font></font></li>
+					<li class="btn-warning" style="display:none;"><font>删除</font></li>
+				</ul>
+				
+				<div id="jjoballtail">
+					<div class="jtablescroll">
+					<table class="jtabledetail table-condensed table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<td style="display:none" dataProperty="jid" dtaDisplay="none">编号</td>
+								<td width="4%" dataCheckBox="true">&lt;</td>
+								<td width="4%" dataProperty="jindex">序号</td>
+								<td width="10%" dataProperty="snum">学号</td>
+								<td width="6%" dataProperty="sname">姓名</td>
+								<td width="4%" dataProperty="sex">性别</td>
+								<td width="10%" dataProperty="cname">班级</td>
+								<td width="14%" dataProperty="idCard">身份证号码</td>
+								<td width="10%" dataProperty="phone">联系方式</td>
+								<td width="10%" dataProperty="position">工作岗位</td>
+								<td width="10%" dataProperty="begindate">开始时间</td>
+								<td width="10%" dataProperty="enddate">结束时间</td>
+							</tr>					
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					</div>
+				
+				<center>
+					<ul class="pagination">
+					</ul>
+				</center>
+				</div>
+				
+				<form onsubmit="return jjoboperate()" id="jjobform" method="post" style="display:none;">
+					<table class="jhelptable" cellpadding="0px" cellspacing="0px" align="center">
+						<tbody>
+						<tr>
+								<td></td>
+								<td class="titleBgColor" width="80px">班级</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control" type="text" max="5" min="3" readonly="readonly" placeholder="请选择班级" required />
+										<ul class="dropdown-menu jhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>								
+								</td>
+								
+								<td class="titleBgColor" width="80px">学号</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control" type="text" max="5" min="3" required="required" readonly="readonly" placeholder="请选择学号" />
+										<ul class="dropdown-menu jstunumul-1 jhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>	
+								</input></td>
+								
+								<td class="titleBgColor" width="80px">姓名</td>
+								<td><input type="text" class="form-control" value="" readonly="readonly" required></input></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="titleBgColor" width="80px">
+									工作岗位
+								</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control" type="text" max="5" min="3" readonly="readonly" placeholder="请选择工作岗位" required />
+										<ul class="dropdown-menu jhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>
+								</td>
+								<td class="titleBgColor" width="80px">开始时间</td>
+								<td>
+									<div class="controls input-append date form_date" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+										<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+										<span class="add-on"><i class="icon-remove"></i> </span>
+										<span class="add-on"><i class="icon-th"></i> </span>
+									</div>
+								</td>
+								<td class="titleBgColor" width="80px">结束时间</td>
+								<td>
+									<div class="controls input-append date form_date" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+										<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+										<span class="add-on"><i class="icon-remove"></i> </span>
+										<span class="add-on"><i class="icon-th"></i> </span>
+									</div>
+								</td>
+							</tr>
+							<tr id="jjobbtn">
+								<td colspan="6"></td>
+								<td>
+									<button type="submit" class="btn btn-danger" style="margin-left:20px;">添加</button>
+									<button type="button" class="btn btn-primary" style="margin-left:20px;">返回</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				
+				<div class="modal fade" id="Jien_Job_Dialog" tabindex="100" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true"
+						style="padding-top: 90px;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">
+										&times;
+									</button>
+									<h4 class="modal-title">
+										请确认修改信息
+									</h4>
+								</div>
+								<div class="modal-body" id="Jien_Job_Dialog_Body">
+									<div class="jienshowcs">
+									<ul>
+									</ul>
+									</div>
+									<div class="jienhelpsu" style="display:none;" id="Jien_Job_Dialog_Form">
+										<form action="" method="post">
+										<table cellpadding="0px" cellspacing="0px" align="center">
+											<tbody>
+												<tr>
+													<td class="titleBgColor" width="80px">工作岗位</td>
+													<td>
+														<div class="dropdown">
+															<input name="" data-toggle="dropdown"
+																class="form-control" type="text" max="5" min="3"
+																readonly="readonly" placeholder="请选择工作岗位" required />
+															<ul class="dropdown-menu jhelpul" role="menu"
+																aria-labelledby="dLabel">
+															</ul>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">开始时间</td>
+													<td>
+														<div class="controls input-append date form_date"
+															data-date="" data-date-format="yyyy-mm-dd"
+															data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+															<input size="16" type="text" class="form-control"
+																width="180px" value="" readonly required> <span
+																class="add-on"><i class="icon-remove"></i> </span> <span
+																class="add-on"><i class="icon-th"></i> </span>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">结束时间</td>
+													<td>
+														<div class="controls input-append date form_date"
+															data-date="" data-date-format="yyyy-mm-dd"
+															data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+															<input size="16" type="text" class="form-control"
+																width="180px" value="" readonly required> <span
+																class="add-on"><i class="icon-remove"></i> </span> <span
+																class="add-on"><i class="icon-th"></i> </span>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										</form>
+									</div>
+									<button type="button" class="btn btn-danger" style="margin-left:440px;width:120px;margin-top:20px;">确认</button>
+								</div>
+							</div>
+						</div>	
+				</div>	
+			</div>
+			
+			<!-- 就业信息 -->
+			<div class="overlap col-md-10" id="jworkwindow">
+				<nav class="navbar navbar-default" role="navigation">
+					<form action="" onsubmit="return jQueryWork(this)" style="float:left;margin-top:8px;width:1115px;" method="post">
+						<input type="text" class="col-jout-2 form-control" value="" placeholder="请输入学号" pattern="[\d]{11}" />
+						<div class="dropdown">
+							<input type="text" data-toggle="dropdown" value=""
+								class="col-jout-2 form-control" max="5" min="3"
+								readonly="readonly" placeholder="请选择班级"/>
+							<ul class="dropdown-menu jhelpul_1"  role="menu" aria-labelledby="dLabel" style="margin-top:35px;margin-left:192px;">
+							</ul>
+						</div>
+						<div class="controls input-append date form_date col-jout-2" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+							<input size="16" type="text" class="form-control" placeholder="请选择就业时间" value="" readonly>
+							<span class="add-on"><i class="icon-remove"></i></span>
+							<span class="add-on"><i class="icon-th"></i></span>
+						</div>
+						<input size="16" type="text" class="col-jout-2 form-control" placeholder="请选择报酬区间" value="" readonly required>
+						<div class="salary-jout-1" id="salary-region">
+							<input type="number" class="salary-jout-2 form-control" /><input type="number" class="salary-jout-2 form-control" />
+							<button type="button" class="salary-jout-3 btn btn-primary">确定</button><button type="button" class="salary-jout-3 btn btn-success">取消</button>
+						</div>
+						<input type="text" class="col-jout-2 form-control" value="" placeholder="请输入工作地点" pattern="[\u4E00-\u9FA5]{1,10}" />
+						<button type="submit" class="btn btn-jien btn-warning" style="margin-left:18px;width:70px;" data-complete-text="查询" data-loading-text="正在查询...">查询</button>
+						<button type="button" class="btn btn-danger" onclick="BtnExport('WorksNeedInfo','JwnInfo','studentInfoWork','学号，姓名，性别，班级，身份证号码，就业时间，就业城市，公司名称，职务，报酬')">导出</button>
+						<button type="reset" class="btn btn-primary">重置</button>
+					</form>
+					&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family: '微软雅黑' ; color:red; font-size: 12px; ">*注意：鼠标右击对应数据对数据进行操作</font>
+				</nav>
+				
+				<ul class="rightclick" id="Jien_Work_P">
+					<li class="btn-info"><font>添加</font></li>
+					<li class="btn-success" style="display:none;"><font>修改</font></li>
+					<li class="btn-success" data-toggle="modal" data-target="#Jien_Work_Dialog" style="display:none;"></li>
+					<li class="btn-warning" style="display:none;"><font>删除</font></li>
+				</ul>
+				
+				<div id="jworkalldetail">
+					
+					<div class="jtablescroll">	
+					<table class="jtabledetail table-condensed table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<td style="display:none" dataProperty="wid" dtaDisplay="none">编号</td>
+								<td width="4%" dataCheckBox="true">oj</td>
+								<td width="4%" dataProperty="windex">序号</td>
+								<td width="10%" dataProperty="snum">学号</td>
+								<td width="6%" dataProperty="sname">姓名</td>
+								<td width="4%" dataProperty="sex">性别</td>
+								<td width="9%" dataProperty="cname">班级</td>
+								<td width="14%" dataProperty="idCard">身份证号码</td>
+								<td width="10%" dataProperty="times">就业时间</td>
+								<td width="6%" dataProperty="city">就业城市</td>
+								<td width="9%" dataProperty="company">公司名称</td>
+								<td width="10%" dataProperty="position">职务</td>
+								<td width="7%" dataProperty="salary">报酬</td>
+							</tr>					
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					</div>
+				
+				<center>
+					<ul class="pagination">
+					</ul>
+				</center>
+				
+				</div>
+				
+				<form onsubmit="return jworkoperate(this)" id="jworkform" method="post" style="display:none;">
+					<table class="jhelptable" cellpadding="0px" cellspacing="0px" align="center">
+						<tbody>
+							<tr>
+								<td class="titleBgColor" width="80px">班级</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control" type="text" max="5" min="3" readonly="readonly" placeholder="请选择班级" required />
+										<ul class="dropdown-menu jhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>								
+								</td>
+								
+								<td class="titleBgColor" width="80px">学号</td>
+								<td>
+									<div class="dropdown">
+										<input name="" data-toggle="dropdown"
+											class="form-control" type="text" max="5" min="3" required="required" readonly="readonly" placeholder="请选择学号" />
+										<ul class="dropdown-menu jstunumul-1 jhelpul" role="menu" aria-labelledby="dLabel">
+										</ul>
+									</div>	
+								</input></td>
+								<td class="titleBgColor" width="80px">姓名</td>
+								<td><input type="text" class="form-control" value="" readonly="readonly" required></input></td>
+								<td class="titleBgColor" width="80px">就业城市</td>
+								<td><input type="text" class="form-control" value="" pattern="[\u4E00-\u9FA5]{2,15}" required></input></td>
+							</tr>
+							<tr>
+								<td class="titleBgColor" width="80px">公司名称</td>
+								<td><input type="text" class="form-control" value="" pattern="[\u4E00-\u9FA5]{2,15}" required></input></td>
+								<td class="titleBgColor" width="80px">就业时间</td>
+								<td>
+									<div class="controls input-append date form_date" data-date=""
+										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+										data-link-format="yyyy-mm-dd">
+										<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+										<span class="add-on"><i class="icon-remove"></i> </span>
+										<span class="add-on"><i class="icon-th"></i> </span>
+									</div>
+								</td>
+								<td class="titleBgColor" width="80px">职务</td>
+								<td><input type="text" class="form-control" value="" pattern="[\u4E00-\u9FA5A-Za-z]{2,15}" required></input></td>
+								<td class="titleBgColor" width="80px">薪水</td>
+								<td><input type="text" class="form-control" value="" pattern="[\d]{1,11}" required></input></td>
+							</tr>
+							<tr id="jworkbtn">
+								<td colspan="7"></td>
+								<td>
+									<button type="submit" class="btn btn-danger" style="margin-left:20px;">添加</button>
+									<button type="button" class="btn btn-primary" style="margin-left:20px;">返回</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				
+				<div class="modal fade" id="Jien_Work_Dialog" tabindex="100" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true"
+						style="padding-top: 90px;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">
+										&times;
+									</button>
+									<h4 class="modal-title">
+										请确认修改信息
+									</h4>
+								</div>
+								<div class="modal-body" id="Jien_Work_Dialog_Body">
+									<div class="jienshowcs">
+									<ul>
+									</ul>
+									</div>
+									
+									<div class="jienhelpsu" style="display:none;">
+										<form action="" onsubmit="return batchUploadWork(this)" method="post" id="Jien_Work_Form">
+										<table cellpadding="0px" cellspacing="0px" align="center">
+											<tbody>
+												<tr>
+													<td class="titleBgColor" width="80px">就业城市</td>
+													<td><input type="text" class="form-control" value="就业城市" pattern="[\u4E00-\u9FA5]{2,15}"></input></td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">公司名称</td>
+													<td><input type="text" class="form-control" value="公司名称" pattern="[\u4E00-\u9FA5]{2,15}"></input></td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">就业时间</td>
+													<td>
+														<div class="controls input-append date form_date"
+															data-date="" data-date-format="yyyy-mm-dd"
+															data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+															<input size="16" type="text" class="form-control"
+																width="180px" value="" readonly> <span
+																class="add-on"><i class="icon-remove"></i> </span> <span
+																class="add-on"><i class="icon-th"></i> </span>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">职务</td>
+													<td><input type="text" class="form-control" value="职务" pattern="[\u4E00-\u9FA5A-Za-z]{2,15}"></input></td>
+												</tr>
+												<tr>
+													<td class="titleBgColor" width="80px">薪水</td>
+													<td><input type="text" class="form-control" value="0000" pattern="[\d]{1,11}"></input></td>
+												</tr>
+											</tbody>
+										</table>
+										<button type="submit" class="btn" style="display:none;"></button>
+										</form>
+									</div>
+									<button type="button" class="btn btn-danger" style="margin-left:440px;width:120px;margin-top:20px;">确认</button>
+								</div>
+							</div>
+						</div>	
+				</div>
+				
+			</div>
+			
+		</div>
+
+
+		<!-- 以下为弹出框 -->
+		
+		<!-- 批量导出弹出框 -->
+		<div>
+			<div class="modal fade" id="Jien_ExportDialog" tabindex="100" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true"
+						style="padding-top: 90px;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">
+										&times;
+									</button>
+									<h4 class="modal-title">请确认导出字段</h4>
+									<a href="" class="btn btn-success" style="float:left;margin-left:400px;margin-top:-30px;" style="display:none;">下载至本机</a>
+								</div>
+								<div class="modal-body">
+									<div class="jienshowes">
+										<ul>
+										</ul>
+									</div>
+									<div id="Jien_ExportBtn" style="">
+										<button type="button" class="btn btn-danger" style="margin-left:440px;width:120px;margin-top:20px;">确认</button>
+									</div>
+								</div>
+							</div>
+						</div>	
+				</div>
+		</div>
+		
+		
+		
+		<div>
+			<!--驳回的弹出匡 -->
+			<br><br><div class="modal fade" id="myModals" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 20px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">ia 
+								&times; 
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								驳回理由
+							</h4>
+						</div>
+						<div class="modal-body">
+
+							<form class="form-horizontal"
+								style="margin-top: 20px; margin-left: 10px;" role="form">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label">
+										驳回理由
+									</label>
+									<div class="col-sm-7">
+										<input type="hidden" name="hiddenbohuiid" id="hiddenbohuiid" />
+										<input type="text" class="form-control" id="bohuiliyou"
+											placeholder="请简洁填写驳回理由" onblur="checkbohuireason()">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-5 col-sm-10">
+										<button type="button" id="alterbtn111" disabled="true"
+											class="btn btn-info btn-lg " onclick="adminbohui()"
+											data-dismiss="modal" aria-hidden="true">
+											确定
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--驳回的弹出匡 结束-->
+			<!--宿舍分配框 -->
+			<div class="modal fade" id="myModals-zxk-ssfp" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 20px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								请选择分配的院系
+							</h4>
+						</div>
+						<div class="modal-body">
+
+							<form class="form-horizontal"
+								style="margin-top: 20px; margin-left: 10px;" role="form">
+								<div class="form-group">
+									<label for="ssfp-zxk-json" class="col-sm-3 control-label">
+										请选择分配的院系
+									</label>
+									<div class="col-sm-7" style="height:150px;">
+										<select class="form-control" id="ssfp-zxk-json">
+											<option>请选择学院</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-5 col-sm-10">
+										<button type="button" id="alterbtn111"
+											class="btn btn-info btn-lg " onclick="ssfp()"
+											data-dismiss="modal" aria-hidden="true">
+											确定
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--宿舍分配框结束 -->
+			<!-- 信息修改弹出框 -->
+			<div class="modal fade" id="myModal" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 20px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								个人信息修改
+							</h4>
+						</div>
+						
+						<div class="modal-body">
+
+							<form class="form-horizontal"
+								style="margin-top: 20px; margin-left: 90px;" role="form">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-3 control-label">
+										真实姓名
+									</label>
+									<div class="col-sm-7">
+										<input type="hidden" name="adminsaid" id="adminsaid" />
+										<input type="text" class="form-control" id="realname"
+											placeholder="真实姓名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">
+										QQ
+									</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="qqnum"
+											placeholder="QQ">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">
+										联系方式
+									</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="telnum"
+											placeholder="联系方式">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">
+										邮箱地址
+									</label>
+									<div class="col-sm-7">
+										<input type="email" class="form-control" id="emailaddr"
+											placeholder="邮箱地址">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								onclick="changeinfo()" data-dismiss="modal" aria-hidden="true">
+								确定
+							</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">
+								取消
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- 信息修改弹出框结束/.modal -->
+			
+			<!-- 辅导员赋权弹出框 -->
+			<div class="modal fade" id="myModal-zxk-fudaoyuan" tabindex="100" role="dialog"
+			 aria-labelledby="myModalLabel" aria-hidden="true" 
+			 style="margin-top:20px;">
+                	<div class="modal-dialog">
+                    	<div class="modal-content">
+                    		<div id="toptitles" class="modal-header">
+                        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        		<h4 class="modal-title" id="myModalLabel">辅导员赋权</h4>
+                      		</div>
+                      		<div class="modal-body">
+                      
+                          <form class="form-horizontal" style="margin-top:20px; margin-left:10px;" role="form">
+                          <div class="form-group">
+                            <label for="xuanzezhuanye" class="col-sm-3 control-label">选择专业</label>
+                            <div class="col-sm-7">
+                            	<input type="hidden"  name="hiddenfuquan-zxk" id="hiddenfuquan-zxk"/>
+                            	<!-- 
+                            		<input type="text" class="form-control" id="bohuiliyou" placeholder="请简洁填写驳回理由" onblur="checkbohuireason()" >
+                            	 -->
+                            	<select class="form-control" name="majors" id="xuanzezhuanye">
+                           			请选择专业
+                            	</select>
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="xuanzenianfen" class="col-sm-3 control-label">选择年份</label>
+                            <div class="col-sm-7">
+                            	<input type="hidden"  name="hiddennianfen" id="hiddennianfen"/>
+                            	<select class="form-control" name="nianfen-zxk" id="nianfen-zxk">
+                           			
+                            	</select>
+                            </div>
+                          </div>
+                          
+                          <hr/>
+                          <div class="form-group">
+                         		<div id="zxk_checkbox" style="text-align: center;">
+                        			班级显示区域
+                         		</div>
+                          </div>
+                          
+                          <hr/>
+                          
+                          <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10">
+                              <button type="button" id="alterbtn12" class="btn btn-info btn-lg " onclick="adminaddfdyclass()" data-dismiss="modal" aria-hidden="true" >确定</button>
+                            </div>
+                          </div>
+                        </form>  
+                      </div>
+                    </div>
+                 </div>
+            </div>
+			<!-- 辅导员赋权弹出框结束 -->
+			
+			<!-- 辅导员赋权弹出框 -->
+			<div class="modal fade" id="myModal-zxk-fudaoyuanxiugai" tabindex="100" role="dialog"
+			 aria-labelledby="myModalLabel" aria-hidden="true" 
+			 style="margin-top:20px;">
+                	<div class="modal-dialog">
+                    	<div class="modal-content">
+                    		<div id="toptitles" class="modal-header">
+                        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        		<h4 class="modal-title" id="myModalLabel">辅导员修改</h4>
+                      		</div>
+                      		<div class="modal-body">
+                      
+                          <form class="form-horizontal" style="margin-top:20px; margin-left:10px;" role="form">
+                          		<input type="hidden"  name="hiddennianfenxiugai" id="hiddennianfenxiugai"/>
+                          <hr/>
+                          <div class="form-group">
+                         		<div id="zxk_checkboxxiugai" style="text-align:center;">
+                        			班级显示区域
+                         		</div>
+                          </div>
+                          
+                          <hr/>
+                          
+                          <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10">
+                              <button type="button" id="alterbtn12" class="btn btn-info btn-lg " onclick="changeright()" data-dismiss="modal" aria-hidden="true" >确定</button>
+                            </div>
+                          </div>
+                        </form>  
+                      </div>
+                    </div>
+                 </div>
+            </div>
+			<!-- 学生在校获得的荣誉信息zmEngligshList -->
+			<div class="modal fade" id="zmHornorList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">荣誉列表</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="myHTables" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>获得年份</th>
+				            <th>获得学期</th>
+				            <th>荣誉名称</th>
+				            <th>荣誉等级</th>
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogHornorList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->			
+			<!-- 学生在校英语考级信息 -->
+			<div class="modal fade" id="zmEngligshList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">英语考级列表</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="myEnglish" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>考试时间</th>
+				            <th>考试学期</th>
+				            <th>考试类型</th>
+				            <th>考试分数</th>
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogEnglishList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->				
+			<!-- 学生在证书考试信息 -->
+			<div class="modal fade" id="zmACFList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">英语考级列表</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="zmGradesTb" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>考试时间</th>
+				            <th>考试学期</th>
+				            <th>证书名称</th>
+				            <th>证书类型</th>
+				            <th>考试成绩</th>
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogACFList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+			<!-- 学生在校寝室通报信息 -->
+			<div class="modal fade" id="zmCFHList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">寝室通报信息</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="zmHourseCF" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>通报时间</th>
+				            <th>通报学期</th>
+				            <th>通报寝室</th>
+				            <th>通报等级</th>
+				            <th>通报原因</th>
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogHCFList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+			<!-- 学生在校处罚信息 -->
+			<div class="modal fade" id="zmXCFList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">学生处罚信息列表</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="zmStuCF" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>处罚时间</th>				            				           
+				            <th>通报等级</th>
+				            <th>处罚原因</th>
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogXCFList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+			<!-- 学生在校职务信息 -->
+			<div class="modal fade" id="zmMPList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">学生在校职务信息列表</h4>
+			      </div>
+			      <div class="modal-body">
+					<table id="zmPositionTb" class="table table-hover">
+				        <thead>
+				          <tr>				            
+				            <th>任职年份</th>
+				            <th>任职学期</th>
+				            <th>任职职务</th>
+				            <th>职务等级</th>				            
+				            <th>操&nbsp;&nbsp;作</th>
+				          </tr>
+				        </thead>
+				        <tbody id="zmdialogMPList">
+				        </tbody>
+					</table>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+			<!-- 修改成功框 -->
+			<div class="modal fade" id="zmShowResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">温馨提示</h4>
+			      </div>
+			      <div class="modal-body">
+			        <h1>修改成功</h1>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->			
+			<!-- 删除成功框 -->
+			<div class="modal fade" id="zmDeleteResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">温馨提示</h4>
+			      </div>
+			      <div class="modal-body">
+			        <h1>删除成功</h1>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->			
+			
+		</div>
+
+		<div>
+			<!--学生信息查询多条件的弹出匡 -->
+			<div class="modal fade" id="moreInfo" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 20px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					<form action="" id="stu_dialogForm">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								更多的查询条件
+							</h4>
+						</div>
+						<div class="modal-body">
+							<table class="table table-bordered">
+								<tr>
+									<td class="col-xs-2">专业</td>
+									<td>
+										<select class="lp_major form-control" id="lp_major">
+
+										</select>
+									</td>
+									<td>班级</td>
+									<td>
+										<select class="lp_class form-control" id="lp_findClass">
+
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>身份证号</td>
+									<td>
+										<input type="text" class="lp_sidnum form-control" pattern="^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$"
+											placeholder="身份证号">
+									</td>
+									<td>宿舍号</td>
+									<td>
+										<input type="text" class="lp_hoseID form-control"
+											placeholder="宿舍号(411)">
+									</td>
+								</tr>
+								<tr>
+									<td>籍贯</td>
+									<td>
+										<select class="lp_nation form-control" id="lp_nation">
+											
+										</select>
+									</td>
+									<td>民族</td>
+									<td>
+										<select class="lp_minzu form-control" id="lp_minzu">
+											
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>政治面貌</td>
+									<td>
+										<select class="lp_politics form-control">
+											<option>
+											</option>
+											<option>党员</option>
+											<option>团员</option>
+											<option>群众</option>
+										</select>
+									</td>
+									<td>
+										贫困等级
+									</td>
+									<td>
+										<select class="lp_pinkun form-control">
+											<option></option>
+											<option>不贫困</option>
+											<option>一般贫困</option>
+											<option>很贫困</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										学生状态
+									</td>
+									<td>
+										<select class="lp_status form-control">
+											<option></option>
+											<option>在校</option>
+											<option>毕业</option>
+										</select>
+									</td>
+									<td>
+										学位
+									</td>
+									<td>
+										<select class="lp_sclYear form-control">
+											<option></option>
+											<option>本科</option>
+											<option>专科</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>性别</td>
+									<td>
+										<select class="lp_sex form-control">
+											<option>
+											</option>
+											<option>男</option>
+											<option>女</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-warning">重置</button>
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" onclick="otherSelect()">
+								确定
+							</button>
+							
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" onclick="updataSelect()">
+								取消
+							</button>
+						</div>
+					  </form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+
+		<div>
+			<!--批量导入的弹出匡 -->
+			<div class="modal fade" id="myModal-jien" tabindex="100"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 165px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" id="jien-close"
+								data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								文件导入
+							</h4>
+						</div>
+						<div class="modal-body">
+							<input type="file" id="jien-file" placeholder="导入">
+						</div>
+						<!-- 进度条显示 -->
+						<div class="progress progress-striped active"
+							style="width: 550px;">
+							<div class="progress-bar" id="progress-bar" role="progressbar"
+								aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+							</div>
+						</div>
+						<div id="file-info">
+							<div class="alert alert-info" style="width: 550px;">
+								请选择文件！
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">
+								取消
+							</button>
+							<button type="button" class="btn btn-primary" id="jien-sure">
+								确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>	
+		<!-- 学生心理信息 -->
+	    <div>
+			<div class="modal fade" id="lp_stuPsyInfosAdd" tabindex="100" style="top:11px;"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 165px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" id="changeText">
+							<button type="button" class="close" id="jien-close"
+								data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								申请信息
+							</h4>
+						</div>
+						<div class="modal-body" id="lp_removeChild">
+							<table class="table table-bordered">
+							  <tr>
+							  	<td>
+							  		<div class="col-xs-4">
+									<input type="text" class="lp_conmitName form-control" readonly="readonly"
+										placeholder="姓名" id="lp_conmitName">
+									</div>
+									<div class="col-xs-4">
+										<input type="text" class="lp_conmitNum form-control" readonly="readonly"
+											placeholder="学号" id="lp_conmitNum">
+									</div>
+									<div class="col-xs-4">
+									<select class="lp_stuPsyLevle form-control" name="items"
+										id="lp_stuPsyLevle">
+										<option>一般关注</option>
+										<option>重点关注</option>
+									</select>
+									</div>
+								</td>
+								
+							  </tr>
+							  <tr>
+							  	<td>
+							  		<div class="lp_width col-xs-4">
+							  		<input class="btn btn-default" disabled="true" type="button" value="申请类型选择:">
+							  		</div>
+							  		<div class="col-xs-6">
+							  		<select multiple  class="lp_stuPsyLevle form-control" name="items"
+											id="lp_stuPsyType">
+											
+									</select>
+									</div>
+							  	</td>
+							  
+							</table>
+							<div>
+								<input class="btn btn-default" disabled="true" type="button" value="添加申请类型">
+								<textarea class="form-control" id="lp_stuPsyTypes" rows="3" placeholder="在这填写申请人心理状况类型"></textarea>
+								<textarea class="form-control" id="lp_stuPsyMiaoshu" rows="3" placeholder="在这填写对申请人状况的描述"></textarea>
+								<a href="javascript:lp_addPsyType()" class="btn btn-primary" role="button">添加类型</a>
+							</div>
+						</div>
+						<div class="modal-footer" id="removeFoot">
+							<button type="button" class="btn btn-default" id="cancel"
+								data-dismiss="modal">
+								取消
+							</button>
+							<button type="button" class="btn btn-primary" onclick="lp_addStuPsys()">
+								确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- 添加跟踪信息 -->
+			<div class="modal fade" id="lp_addDetalInfos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">添加跟踪信息</h4>
+			      </div>
+			      <div class="modal-body" id="lp_addDetailBody">
+			        
+			      </div>
+			      <div class="modal-footer" id="lp_addDetailBtn">
+			        			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+			<!-- 查看跟踪信息 -->
+			<div class="modal fade" id="lp_lookDetalInfos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">查看跟踪信息</h4>
+			      </div>
+			      <div class="modal-body" id="lp_lookDetailBody">
+			        
+			      </div>
+			      <div class="modal-footer" id="lp_lookDetailBtn">
+			        			        
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+		</div>	
+		<!-- 荣誉批量改 -->
+		<div>
+			<div class="modal fade" id="Lp_Honor_Dialog" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="padding-top: 90px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" id="jienhelpclose" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title">
+								请确认修改信息
+							</h4>
+						</div>
+						<div class="modal-body" id="lp_jienshowcs">
+							<div class="jienshowcs" id="lp_selectHonor">
+								<ul>
+									
+								</ul>
+							</div>
+							<div class="jienhelpsu" style="display:none;" id="lp_Honor_Dialog_Form">
+								<form action="" onsubmit="return" method="post">
+								<table cellpadding="0px" cellspacing="0px" align="center">
+									<tbody>
+										<tr>
+											<td class="titleBgColor" width="80px">荣誉名</td>
+											<td><input type="text" class="form-control" value="" required></input></td>
+										</tr>
+										<tr>
+											<td class="titleBgColor" width="80px">
+												获奖学期
+											</td>
+											<td>
+												<div class="dropdown">
+													<input name="" data-toggle="dropdown"
+														class="form-control jhelpbank" type="text" max="5" min="3" readonly="readonly" placeholder="请选择获奖学期" required />
+													<ul class="dropdown-menu jhelpul jhelpulbank" role="menu" aria-labelledby="dLabel">
+														<li>上学期</li>
+														<li>下学期</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor" width="80px">获奖年份</td>
+											<td>
+												<div class="controls input-append date" id="lp_honor" data-date=""
+													data-date-format="yyyy" data-link-field="dtp_input2"
+													data-link-format="yyyy">
+													<input size="16" type="text" class="form-control" width="180px" value="" readonly required>
+													<span class="add-on"><i class="icon-remove"></i> </span>
+													<span class="add-on"><i class="icon-th"></i> </span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="titleBgColor" width="80px">
+												获奖等级
+											</td>
+											<td>
+												<div class="dropdown">
+													<input name="" data-toggle="dropdown"
+														class="form-control jhelpbank" type="text" max="5" min="3" readonly="readonly" placeholder="请选择等级" required />
+													<ul class="dropdown-menu jhelpul jhelpulbank" role="menu" aria-labelledby="dLabel">
+														<li>校级</li>
+														<li>院级</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</form>
+							</div>
+							<button type="button" class="btn btn-danger" style="margin-left:440px;width:120px;margin-top:20px;">确认</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>	
+		
+		<!--资助  -->
+		<div>
+			<div class="modal fade" id="Jien_Help_Dialog" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="padding-top: 90px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" id="jienhelpclose" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title">
+								请确认修改信息
+							</h4>
+						</div>
+						<div class="modal-body" id="jienshowcs">
+							<div class="jienshowcs">
+							<ul>
+							</ul>
+							</div>
+							<div class="jienhelpsu" style="display:none;" id="Jien_Help_Dialog_Form">
+								<form action="" onsubmit="return" method="post">
+								<table cellpadding="0px" cellspacing="0px" align="center">
+									<tbody>
+										<tr>
+											<td class="titleBgColor" width="80px">贷款银行</td>
+											<td>
+												<div class="dropdown">
+													<input name="" data-toggle="dropdown"
+														class="form-control jhelpbank" type="text" max="5" min="3"
+														readonly="readonly" placeholder="请选择贷款银行" required />
+													<ul class="dropdown-menu jhelpul jhelpulbank" role="menu"
+														aria-labelledby="dLabel">
+													</ul>
+												</div></td>
+										</tr>
+										<tr>
+											<td class="titleBgColor" width="80px">贷款时间</td>
+											<td>
+												<div class="controls input-append date form_date"
+													data-date="" data-date-format="yyyy-mm-dd"
+													data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+													<input size="16" type="text" class="form-control"
+														width="180px" value="" readonly required> <span
+														class="add-on"><i class="icon-remove"></i> </span> <span
+														class="add-on"><i class="icon-th"></i> </span>
+												</div></td>
+										</tr>
+										<tr>
+											<td class="titleBgColor" width="80px">贷款金额</td>
+											<td><input type="text" class="form-control" value=""
+												pattern="[\d]{1,8}.[\d]{2}" required></input>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</form>
+							</div>
+							<button type="button" class="btn btn-danger" style="margin-left:440px;width:120px;margin-top:20px;">确认</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>	
+		
+		<!-- dkaij's typeFile model -->
+        <div class="modal fade" id="typeExcelModel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4>模板表格下载</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentInfo.xls">湖南工学院学生基本信息表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentDetail.xls">湖南工学院学生详细信息表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentDuty.xls">湖南工学院学生职务表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentSanction.xls">湖南工学院学生处分表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentHelper.xls">湖南工学院勤工助学表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentHonor.xls">湖南工学院学生荣誉表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentCertificate.xls">湖南工学院学生证书表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentJob.xls">湖南工学院学生就业表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/studentDormitory.xls">湖南工学院宿舍信息表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/classes.xls">湖南工学院班级信息表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/loan.xls">湖南工学院学生贷款信息表</a></div>
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/CETScore.xls">湖南工学院英语等级成绩详细表</a></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"><a class="btn btn-primary" href="../typeExcel/criticism.xls">湖南工学院寝室通报批评表</a></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+
+        <!-- dkaij's export students model -->
+        <div class="modal fade" id="exportStudentsModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="dkaij-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">学生信息导出</h4>
+                    </div>
+                    <div id="modalBody" class="modal-body text-center">
+                        <!-- 可选的导出列 -->
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="1">学号
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="2">姓名
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="3">学院
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="4">专业
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="5">班级
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="6">性别
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="8">生日
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="9">手机号码
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="10">QQ
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="11">邮箱
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="12">楼号
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="13">宿舍号
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="14">床号
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="15">身份证号
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="16">民族
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="17">籍贯
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="18">住址
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="19">政治面貌
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="20">贫困等级
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="21">父母电话
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 2%">
+                            <div class="btn-group" data-toggle="6">
+                                <div class="row">
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="22">状态
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="checkbox" value="23">毕业时间
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="exportStudents()">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+                <div id="dkaij-result">
+
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+	</div>
+	<!--zxk-->
+		<div class="modal fade" id="myModals-zxk-ssxxexport" tabindex="100" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="margin-top: 20px;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								宿舍信息导出
+							</h4>
+						</div>
+						<div class="modal-body">
+							<h3>因为宿舍信息只有6个属性所以全部导出</h3>
+						</div>
+					
+					<div class="modal-footer">
+                    	<button type="button" class="btn btn-success" onclick="exportKssExport()">确定</button>
+                    	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                	</div>
+                	<div id="zxkksscx-result">
+
+                	</div>
+				</div>
+			</div>
+		</div>
+	<!--zxk-->
+		<!--尾部-->
+		<div class="row" id="weibu">
+			<div class="col-lg-12">
+				<footer class="copy navbar-fixed-bottom bs-docs-nav" role="banner">
+				<p class="STYLE1">
+					Copyright &copy; 2013-2014 All Rights Reserved 湖南工学院 &copy; 版权所有
+				</p>
+				<p class="STYLE1">
+					<a href="ycIntro.html" target="_blank" style="font-family:'微软雅黑'; color:#CCCCEE; " title="衡阳源辰信息科技有限公司技术支持">技术支持</a>
+					<span class="yclogo">源辰信息科技有限公司(0734-8355998)</span>
+				</p>
+				</footer>
+			</div>
+		</div>
+		<!--容器结束-->
+	</body>
+</html>
+

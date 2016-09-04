@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+.lp_top{height:690px; background:#CCC;}
+.lp_logo img{ height:65px;}
+.copy{background:#999; text-align:center;}
+.STYLE1{width:100%;color:#CCC;}
+.menu{ width:150px; background:url(../imgs/background.jpg) repeat; position:absolute; left:40px; top:70px;}
+.lp_text{ margin-top:40px;}
+.button_top{ margin-top:16px; }
+#person_img{ width:65px; height:65px;border-radius:65px; }
+.lp_down{ margin-top:65px; background:url(../imgs/background.jpg) repeat; height:0px; z-index:10;}
+.lp_table{ z-index:-1;}
+.lp_fenye{ position:absolute; left:220px; top:400px;}
+
+.lp_returnBtn{ margin-bottom:20px;float:right;}
+.lp_overlap{ padding-right:2px;}
+#lp_menu { display: none; position: absolute;}
+#lp_menu li{ text-align:center;}
+	
+.yclogo{padding-left:20px;background:url(../../img/yclogo.png) no-repeat left center;}
+#zmImageAcademy,#zmImageMajor,#zmImageClass{width:100%;}
+
+
+
+

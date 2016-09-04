@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<!-- 定义开发者模式 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="100000000" />  <!-- 100M -->
+
+
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="AdminLogin_*" class="com.yc.cscms.actions.AdminLoginAction" method="{1}">
+            <result name="getcode_success">/getyzm.jsp</result>
+        </action>
+        
+        
+        <action name="Front_*" class="com.yc.cscms.actions.FrontAction" method="{1}">
+        
+        </action>
+
+        
+        <action name="StuInfo_*" class="com.yc.cscms.actions.StuInfoAction" method="{1}">
+        	<!-- 配置一个用于文件上传的拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 容许上传的文件类型 -->
+				<param name="allowedTypes">image/jpeg</param>
+				<!-- 容许上传文件的大小 -->
+				<param name="maximumSize">2048000</param>
+			</interceptor-ref>
+		
+			<!-- 配置默认拦截器 -->
+			<interceptor-ref name="defaultStack" />
+			
+			<!-- 配置属性 -->
+			<param name="savePath">upload/stuhead</param>
+        </action>
+
+        <action name="HelpInfo_*" class="com.yc.cscms.actions.HelpInfoAction" method="{1}">
+     	</action>
+     	  
+     	  <action name="JobInfo_*" class="com.yc.cscms.actions.JobInfoAction" method="{1}">
+     	  </action>
+     	  
+     	  <action name="WorkInfo_*" class="com.yc.cscms.actions.WorkInfoAction" method="{1}">
+     	  </action>
+        
+         <action name="StuHonorInfo_*" class="com.yc.cscms.actions.StuHonorInfoAction" method="{1}">
+     	  </action>
+        
+        <action name="BatchUpload_*" class="com.yc.cscms.actions.BatchUploadAction" method="{1}">
+			<!-- 配置一个用于文件上传的拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 容许上传的文件类型 -->
+				<param name="allowedTypes">application/kset,application/vnd.ms-excel</param>
+				<!-- 容许上传文件的大小 -->
+				<param name="maximumSize">100000000</param>
+			</interceptor-ref>
+		
+			<!-- 配置默认拦截器 -->
+			<interceptor-ref name="defaultStack" />
+			
+			<!-- 配置属性 -->
+			<param name="savePath">upload</param>
+			<result name="success">login.html</result>
+			<result name="input">error.html</result>       
+        </action>
+        
+        
+        
+        <action name="ImageBatch_*" class="com.yc.cscms.actions.ImageBatchUploadAction" method="{1}">
+			<!-- 配置一个用于文件上传的拦截器 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 容许上传的文件类型 -->
+				<param name="allowedTypes">image/jpeg</param>
+				<!-- 容许上传文件的大小 -->
+				<param name="maximumSize">100000000</param>
+			</interceptor-ref>
+		
+			<!-- 配置默认拦截器 -->
+			<interceptor-ref name="defaultStack" />
+        </action>
+        
+        
+
+        <action name="Export_*" class="com.yc.cscms.actions.ExportAction" method="{1}">
+
+        </action>
+
+    </package>
+    
+</struts>

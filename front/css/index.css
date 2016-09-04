@@ -1,0 +1,55 @@
+*{
+    font-family:"微软雅黑";
+    margin:0px auto;
+    padding:0px;
+}
+
+#showStudentDetilInfo{
+    width:1000px;
+    height:100%;
+}
+
+#showStudentDetilInfo table{
+    border-collapse:collapse;
+    border-color:#39F;
+    text-align:center;
+    line-height:30px;
+    vertical-align:middle;
+}
+
+#showStudentDetilInfo table caption{
+    font-size:24px;
+    font-family:"黑体";
+    margin:10px auto;
+    color:#39F;
+    letter-spacing:2px;
+}
+
+.titleBgColor{
+    color: #39F;
+    letter-spacing:1px;
+    font-size:13px;
+}
+
+#showStudentDetilInfo table td{
+    vertical-align:middle;
+    border-collapse:collapse;
+    border:1px solid #39F;
+}
+
+.width80{
+    width:80px;
+}
+
+.width110{
+    width:110px;
+}
+
+td{
+    font-size:12px;
+}
+
+.contentstyle{
+    text-align:left;
+    padding-left:10px;
+}
